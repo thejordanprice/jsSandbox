@@ -218,18 +218,30 @@ const displayExampleThree = () => {
 };
 
 const saveFunction = () => {
+  let errors = [];
   let data = {
     id: Math.random().toString(32).substr(2, 32),
-    date: new Date().valueOf(),
-    name: title.value.trim(),
-    work: sandbox.innerHTML.trim(),
+    data: {
+      date: new Date().valueOf(),
+      name: title.value.trim(),
+      work: sandbox.innerHTML.trim(),
+    },
+    completed: 'in development...',
+  };
+  if (data.work === '') {
+    errors.push('There was no work provided.');
+  };
+  if (data.name === '') {
+    errors.push('There was no name provided.');
   };
   console.log(data);
 };
 
+
 // load example 1 code into sandbox.
 exampleOne.addEventListener('click', () => {
   sandbox.innerHTML = displayExampleOne();
+  return false;
 });
 
 // load example 2 code into sandbox.
