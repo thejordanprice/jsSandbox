@@ -200,13 +200,13 @@ const colors = [
   '#989ead',
   '#86939c'
 ];
-const select = function(array, callback) {
+const select = (array, callback) => {
   let selected = array[Math.floor(Math.random() * array.length)];
   callback(selected);
 };
 const main = () => {
   setTimeout(() => {
-    select(colors, function(color) {
+    select(colors, (color) => {
       document.body.style.background = color;
       main();
     });
