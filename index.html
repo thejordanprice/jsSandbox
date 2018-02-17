@@ -131,7 +131,7 @@ const evaluate = () => {
               data: {
                 name: work.name,
                 time: timer + 'ms',
-                work: work.work.replace(/(?:\r\n|\r|\n)/g, '<br />'),
+                work: work.work,
                 eval: result(),
               },
               completed: true,
