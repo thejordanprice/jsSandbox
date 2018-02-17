@@ -205,9 +205,10 @@ const select = function(array, callback) {
   callback(selected);
 };
 const main = () => {
-  setTimeout(function() {
+  setTimeout(() => {
     select(colors, function(color) {
       document.body.style.background = color;
+      main();
     });
   }, 2500);
 };
