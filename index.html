@@ -116,7 +116,6 @@ const evaluate = () => {
         // the work was completed
         if (result) {
           let completed = {
-              status: 202,
               id: work.id,
               data: {
                 name: work.name,
@@ -125,7 +124,7 @@ const evaluate = () => {
                 work: work.work,
                 eval: result(),
               },
-              completed: true,
+              status: true,
             }
             // work seemed to have went well.
           response.innerHTML = JSON.stringify((completed), null, 2);
@@ -150,7 +149,7 @@ const evaluate = () => {
         execution: timer + 'ms',
         message: errors,
       },
-      completed: false,
+      status: false,
     };
     response.innerHTML = JSON.stringify(error, null, 2);
   }
@@ -226,7 +225,7 @@ const saveFunction = () => {
       name: title.value.trim(),
       work: sandbox.innerHTML.trim(),
     },
-    completed: 'in development...',
+    status: 'in development...',
   };
   if (data.work === '') {
     errors.push('There was no work provided.');
