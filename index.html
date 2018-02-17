@@ -45,7 +45,7 @@
     <input class='form-control' type='text' id='title' placeholder='0.0.1-alpha-beta' />
   </div>
   <div class='form-group'>
-    <label for='sandbox'>Function Sandbox &nbsp;<small id='exampleOne'>Example #1</small> &nbsp;<small id='exampleTwo'>Example #2</small> &nbsp;<small id='exampleThree'>Example #3</small> &nbsp;<button class='btn btn-info' id='trash'>Clear &nbsp;<i class='fas fa-eraser'></i></button> &nbsp;<button class='btn btn-success' id='submit'>Run &nbsp;<i class='fas fa-rocket'></i></button> &nbsp;<button class='btn btn-disabled' id='save'>Save &nbsp;<i class='fas fa-save'></i></button> &nbsp;<button class='btn btn-danger' id='destroy'>Destroy &nbsp;<i class='fas fa-trash'></i></button></label>
+    <label for='sandbox'>Function Sandbox &nbsp;<small id='exampleOne'>Example #1</small> &nbsp;<small id='exampleTwo'>Example #2</small> &nbsp;<small id='exampleThree'>Example #3</small> &nbsp;<button class='btn btn-info' id='trash'>Clear &nbsp;<i class='fas fa-eraser'></i></button> &nbsp;<button class='btn btn-success' id='submit'>Run &nbsp;<i class='fas fa-rocket'></i></button> &nbsp;<button class='btn btn-secondary' id='save'>Save &nbsp;<i class='fas fa-save'></i></button> &nbsp;<button class='btn btn-danger' id='destroy'>Destroy &nbsp;<i class='fas fa-trash'></i></button></label>
     <textarea class='form-control' id='sandbox' rows='8' placeholder='`use strict`;
 
 const x = (a, b) => {
@@ -217,6 +217,16 @@ const displayExampleThree = () => {
   return string;
 };
 
+const saveFunction = () => {
+  let data = {
+    id: Math.random().toString(32).substr(2, 32),
+    date: new Date().valueOf(),
+    name: title.value.trim(),
+    work: sandbox.value.trim(),
+  };
+  console.log(data);
+};
+
 // load example 1 code into sandbox.
 exampleOne.addEventListener('click', () => {
   sandbox.innerHTML = displayExampleOne();
@@ -262,7 +272,7 @@ submit.addEventListener('click', () => {
 
 // save to google cloud db
 save.addEventListener('click', () => {
-  alert('I will add the save function soon');
+  saveFunction();
   return false;
 });
 </script>
