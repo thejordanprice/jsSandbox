@@ -96,7 +96,7 @@ const evaluate = () => {
   // start a timer
   let start = new Date().valueOf();
   // if both values are full continue
-  if (title.value && sandbox.value) {
+  if (title.value && sandbox.innerHTML) {
     // start creating a work object
     let work = {
       // just a couple things in the work object
@@ -135,13 +135,20 @@ const evaluate = () => {
     evaluation(work);
   } else {
     // missing information.
+    let errors = [];
+    if (sandbox.value === '') {
+      errors.push('There was no function input.');
+    };
+    if (title.value === '') {
+      errors.push('There was no title input.');
+    };
     let stop = new Date().valueOf();
     let timer = (stop - start);
     let error = {
       error: 9001,
       data: {
         execution: timer + 'ms',
-        message: 'You\'re missing input...',
+        message: errors,
       },
       completed: false,
     };
