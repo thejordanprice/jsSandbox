@@ -201,27 +201,26 @@ run();`;
 };
 
 const displayExampleThree = () => {
-  let string = `'use strict'
-
-let randomtruefalse = () => {
-  return Math.random() < 0.5;
-};
-
-let loop = () => {
-  let answers = [];
-  answers.push(randomtruefalse());
-  answers.push(randomtruefalse());
-  answers.push(randomtruefalse());
-  answers.push(randomtruefalse());
-  answers.push(randomtruefalse());
-  answers.push(randomtruefalse());
-  answers.push(randomtruefalse());
-  answers.push(randomtruefalse());
-  answers.push(randomtruefalse());
-  return answers;
-};
-
-loop();`;
+  let string = `'use strict';
+  const colors = [
+    '#d0c2e1',
+    '#bdb6d0',
+    '#abaabe',
+    '#989ead',
+    '#86939c'
+  ];
+  const select = function(array, callback) {
+    let selected = array[Math.floor(Math.random() * array.length)];
+    callback(selected);
+  };
+  const main = () => {
+    setTimeout(function() {
+      select(colors, function(color) {
+        document.body.style.background = color;
+      });
+    }, 2500);
+  };
+  main();`;
   return string;
 };
 
