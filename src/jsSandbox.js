@@ -1,4 +1,3 @@
-'use strict';
 /**
  * the DOM hooks
  */
@@ -105,3 +104,45 @@ const run = () => {
 run();`;
   return string;
 };
+
+// load example 1 code into sandbox.
+exampleOne.addEventListener('click', () => {
+  sandbox.innerHTML = displayExampleOne();
+});
+
+// load example 2 code into sandbox.
+exampleTwo.addEventListener('click', () => {
+  sandbox.innerHTML = displayExampleTwo();
+  return false;
+});
+
+// add trash for just sandbox
+trash.addEventListener('click', () => {
+	sandbox.innerHTML = '';
+  return false;
+});
+
+// initiate random title generator.
+random.addEventListener('click', () => {
+  title.value = randomTitle();
+  return false;
+});
+
+// to clear out said data easily
+destroy.addEventListener('click', () => {
+  response.innerHTML = 'destroyed';
+  sandbox.value = '';
+  title.value = '';
+  return false;
+});
+
+// to submit and evaluate
+submit.addEventListener('click', () => {
+  evaluate();
+  return false;
+});
+
+// save to google cloud db
+save.addEventListener('click', () => {
+  return false;
+});
