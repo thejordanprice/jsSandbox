@@ -222,7 +222,7 @@ const saveFunction = () => {
     id: Math.random().toString(32).substr(2, 32),
     date: new Date().valueOf(),
     name: title.value.trim(),
-    work: sandbox.value.trim(),
+    work: sandbox.innerHTML.trim(),
   };
   console.log(data);
 };
