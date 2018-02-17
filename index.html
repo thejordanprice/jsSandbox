@@ -12,15 +12,6 @@
   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
   <link rel="stylesheet" type="text/css" href="lib/css/sketchy.min.css">
   <link rel="stylesheet" type="text/css" href="src/style.css">
-  <style type="text/css" media="screen">
-    #editor { 
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
-      }
-  </style>
   <title>jsSandbox by thejordanprice</title>
 </head>
 <body>
@@ -54,7 +45,20 @@
     <input class='form-control' type='text' id='title' placeholder='0.0.1-alpha-beta' />
   </div>
   <div class='form-group'>
-    <label for='sandbox'>Function Sandbox &nbsp;<small id='exampleOne'>Example #1</small> &nbsp;<small id='exampleTwo'>Example #2</small> &nbsp;<button class='btn btn-info' id='trash'>Clear &nbsp;<i class='fas fa-eraser'></i></button> &nbsp;<button class='btn btn-success' id='submit'>Run &nbsp;<i class='fas fa-rocket'></i></button> &nbsp;<button class='btn btn-disabled' id='save'>Save &nbsp;<i class='fas fa-save'></i></button> &nbsp;<button class='btn btn-danger' id='destroy'>Destroy &nbsp;<i class='fas fa-trash'></i></button></label>
+    <label for='sandbox'>
+      Function Sandbox 
+      &nbsp;<small id='exampleOne'>Example #1</small> 
+      &nbsp;<small id='exampleTwo'>Example #2</small> 
+      &nbsp;<small id='exampleThree'>Example #3</small> 
+      <div class='btn-group'>
+        &nbsp;<button class='btn btn-info' id='trash'>Clear 
+        &nbsp;<i class='fas fa-eraser'></i></button> 
+        &nbsp;<button class='btn btn-success' id='submit'>Run 
+        &nbsp;<i class='fas fa-rocket'></i></button> 
+        &nbsp;<button class='btn btn-disabled' id='save'>Save 
+        &nbsp;<i class='fas fa-save'></i></button>
+      </div>
+    </label>
     <textarea class='form-control' id='sandbox' rows='8' placeholder='`use strict`;
 
 const x = (a, b) => {
@@ -66,10 +70,6 @@ x(4,8);'></textarea>
   <div class='container form-group'>
     <label for='response'>Response</label>
     <pre class='form-control' id='response'>null</pre>
-  </div>
-  <br />
-  <div class='text-center'>
-
   </div>
 </div>
 <br />
@@ -95,6 +95,7 @@ const destroy = document.getElementById('destroy');
 const random = document.getElementById('random');
 const exampleOne = document.getElementById('exampleOne');
 const exampleTwo = document.getElementById('exampleTwo');
+const exampleThree = document.getElementById('exampleThree');
 
 /**
  * Our main on run function.
@@ -199,6 +200,31 @@ run();`;
   return string;
 };
 
+const displayExampleThree = () => {
+  let string = `'use strict'
+
+let randomtruefalse = () => {
+  return Math.random() < 0.5;
+};
+
+let loop = () => {
+  let answers = [];
+  answers.push(randomtruefalse());
+  answers.push(randomtruefalse());
+  answers.push(randomtruefalse());
+  answers.push(randomtruefalse());
+  answers.push(randomtruefalse());
+  answers.push(randomtruefalse());
+  answers.push(randomtruefalse());
+  answers.push(randomtruefalse());
+  answers.push(randomtruefalse());
+  return answers;
+};
+
+loop();`;
+  return string;
+};
+
 // load example 1 code into sandbox.
 exampleOne.addEventListener('click', () => {
   sandbox.innerHTML = displayExampleOne();
@@ -207,6 +233,12 @@ exampleOne.addEventListener('click', () => {
 // load example 2 code into sandbox.
 exampleTwo.addEventListener('click', () => {
   sandbox.innerHTML = displayExampleTwo();
+  return false;
+});
+
+// load example 3 code into sandbox.
+exampleThree.addEventListener('click', () => {
+  sandbox.innerHTML = displayExampleThree();
   return false;
 });
 
@@ -238,6 +270,7 @@ submit.addEventListener('click', () => {
 
 // save to google cloud db
 save.addEventListener('click', () => {
+  alert('I will add the save function soon');
   return false;
 });
 </script>
