@@ -228,8 +228,7 @@ const saveFunction = () => {
       date: new Date().valueOf(),
       name: title.value.trim(),
       work: sandbox.innerHTML.trim(),
-    },
-    status: 'saving...',
+    }
   };
   // error checking
   if (data.work === '') {
@@ -241,15 +240,22 @@ const saveFunction = () => {
   // send the data off to the cloud.
   // console.log(data);
   response.innerHTML = JSON.stringify(data, null, 2);
-  fetch('https://us-central1-dev-box-175801.cloudfunctions.net/savefunc', {
+  /**
+   * Sending the function via post.
+   */
+  // let url = 'https://postman-echo.com/post';
+  // let url = 'https://us-central1-dev-box-175801.cloudfunctions.net/savefunc';
+  let url = 'https://us-central1-dev-project-9000.cloudfunctions.net/savefunc';
+  console.log(data);
+  fetch(url, {
     method: 'POST', 
     mode: 'no-cors', 
     redirect: 'follow',
-    body: JSON.stringify(data).toString(),
+    body: JSON.stringify(data),
     headers: new Headers({
       'Content-Type': 'application/json'
     })
-  }).then(() => console.log());
+  }).then((res) => console.log(res));
 };
 
 
