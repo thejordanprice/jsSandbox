@@ -301,14 +301,13 @@ const loadFunction = () => {
   response.innerHTML = JSON.stringify(error, null, 2);
 };
 
-  /**
-  fetch( + input,{
-    mode: 'no-cors'
-  }).then((response) => {
-    console.log(response.type); // "opaque"
-  }).catch(console.log)
-
-};  */
+/**
+fetch(url + input,{
+  mode: 'no-cors'
+}).then((response) => {
+  console.log(response.type); // "opaque"
+}).catch(console.log)
+*/
 
 // load button to give input dialog.
 loadbutton.addEventListener('click', () => {
