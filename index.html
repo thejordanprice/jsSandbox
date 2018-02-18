@@ -289,8 +289,16 @@ const loadFunction = () => {
   let input = prompt('What is the ID of the requested function?').trim();
   let url = 'https://us-central1-dev-box-175801.cloudfunctions.net/getfunc?id=' + input;
   console.log(url);
-  fetch(url, { mode: 'no-cors' }).then(console.log());
-  sandbox.innerHTML = 'Load isn\'t currently working...';
+  fetch(url, { mode: 'no-cors' })
+  .then(console.log())
+  .catch(() => {})
+  let error = {
+    error: 500,
+    message: 'Loading is not working at the moment...',
+    status: true,
+  }
+  sandbox.innerHTML = '';
+  response.innerHTML = JSON.stringify(error, null, 2);
 };
 
   /**
