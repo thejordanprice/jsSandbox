@@ -273,17 +273,8 @@ const saveFunction = () => {
     element.innerHTML = 'You successfully saved as ID: ' + data.id;
     document.getElementById('app').prepend(element);
   })
+  // its sometimes not saving :P
   .catch(console.log)
-  .catch((data) => {
-    if (data.code !== 200) {
-      let element = document.createElement('div');
-      element.id = 'alert';
-      element.class = 'alert alert-info';
-      element.role = 'alert';
-      element.innerHTML = 'It did not succesfully save.';
-      document.getElementById('app').prepend(element);
-    };
-  });
 };
 
 // WIP LOADING THEM FROM THE DB.
