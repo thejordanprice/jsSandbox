@@ -74,6 +74,7 @@ x(4,8);'></textarea>
   </div>
 </footer>
 <script>
+'use strict';
 /**
  * The JAVASCRIPT SECTION :D
  * The DOM hooks
@@ -284,13 +285,19 @@ const saveFunction = () => {
 const loadFunction = () => {
   //let input = alert('This is almost complete.');
   let input = prompt('What is the ID of the requested function?').trim();
-  console.log(input);
-  fetch('https://us-central1-dev-box-175801.cloudfunctions.net/getfunc?id=' + input,{
+  let url = 'https://us-central1-dev-box-175801.cloudfunctions.net/getfunc?id=' + input;
+  console.log(url);
+  fetch(url, { mode: 'no-cors' }).then(console.log());
+};
+
+  /**
+  fetch( + input,{
     mode: 'no-cors'
   }).then((response) => {
     console.log(response.type); // "opaque"
   }).catch(console.log)
-};
+
+};  */
 
 // load button to give input dialog.
 loadbutton.addEventListener('click', () => {
