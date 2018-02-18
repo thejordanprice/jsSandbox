@@ -252,9 +252,9 @@ const saveFunction = () => {
     mode: 'no-cors', 
     redirect: 'follow',
     body: JSON.stringify(data),
-    headers: new Headers([
-      ['Content-Type', 'application/json']
-    ])
+    headers: {
+      'Content-Type':'application/json'
+    }
   }).then((res) => console.log(res));
 };
 
