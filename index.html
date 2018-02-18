@@ -229,7 +229,7 @@ const saveFunction = () => {
       name: title.value.trim(),
       work: sandbox.innerHTML.trim(),
     },
-    status: 'in development...',
+    status: 'saving...',
   };
   // error checking
   if (data.work === '') {
@@ -239,7 +239,17 @@ const saveFunction = () => {
     errors.push('There was no name provided.');
   };
   // send the data off to the cloud.
-  console.log(data);
+  // console.log(data);
+  response.innerHTML = JSON.stringify(data, null, 2);
+  fetch('https://us-central1-dev-box-175801.cloudfunctions.net/savefunc', {
+    method: 'POST', 
+    mode: 'no-cors', 
+    redirect: 'follow',
+    body: JSON.stringify(data).toString(),
+    headers: new Headers({
+      'Content-Type': 'application/json'
+    })
+  }).then(() => console.log());
 };
 
 
