@@ -19,6 +19,7 @@ A sandbox webapp for playing with javascript in the browser. the ultimate learni
 1. I think its a pretty fun idea to send our individual functions that eval to help each other all learn.
 2. I needed a project to work on that wasn't completely boring (something that might grow, cough).
 3. I love coding and teaching people how to code, I think this is the perfect platform for doing so.
+4. Don't we all love coding?
 
 ### To-Do
 
