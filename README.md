@@ -10,6 +10,9 @@ A sandbox webapp for playing with javascript in the browser. the ultimate learni
 
 **Demo** https://thejordanprice.github.io/jsSandbox
 
+### Screenshot (alpha)
+
+![Screenshot](https://i.imgur.com/KY3lHe2.png)
 
 ### Why
 
