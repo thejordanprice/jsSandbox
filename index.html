@@ -36,7 +36,7 @@
   </div>
 </nav>
 <!-- main content. -->
-<div class='container'>
+<div class='container' id='app'>
   <div class='text-center'>
     <small><i>Functions at their finest.</i></small>
   </div>
@@ -91,7 +91,7 @@ const exampleThree = document.getElementById('exampleThree');
 /**
  * A good posting setup.
  */
-const GoodFetch = (url, method, data) => {
+const promisedFetch = (url, method, data) => {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     let body = JSON.stringify(data);
@@ -264,9 +264,25 @@ const saveFunction = () => {
    * Sending the function via post.
    */
   const url = 'https://us-central1-dev-box-175801.cloudfunctions.net/savefunc';
-  GoodFetch(url, "POST", data)
-  .then(console.log)
-  .catch(console.log)
+  promisedFetch(url, "POST", data)
+  //.then(console.log)
+  .then(() => {
+    let element = document.createElement('div');
+    element.id = 'alert';
+    element.class = 'alert alert-success';
+    element.role = 'alert';
+    element.innerHTML = 'You successfully saved as ID: ' + data.id;
+    document.getElementById('app').prepend(element);
+  })
+  //.catch(console.log)
+  .catch(() => {
+    let element = document.createElement('div');
+    element.id = 'alert';
+    element.class = 'alert alert-info';
+    element.role = 'alert';
+    element.innerHTML = 'It did not succesfully save ID: ' + data.id;
+    document.getElementById('app').prepend(element);
+  })
 };
 
 
