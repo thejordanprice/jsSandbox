@@ -92,13 +92,13 @@ const exampleThree = document.getElementById('exampleThree');
  * A good posting setup.
  */
 const GoodFetch = (url, method, data) => {
-  return new Promise((resolve, reject)=>{
+  return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     let body = JSON.stringify(data);
     xhr.open('POST', url);
     xhr.setRequestHeader('content-type', 'application/json');
     xhr.send(body);
-    xhr.onerror = (err)=>{
+    xhr.onerror = (err) => {
       reject({"error":err})
     }
     xhr.onload = () => {
