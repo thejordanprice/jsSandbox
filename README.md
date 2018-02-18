@@ -1,6 +1,6 @@
 # jsSandbox
 
-A sandbox webapp for playing with javascript in the browser. the ultimate learning tool. Take data you can grab from the cat-factory and code away inside this virtual environment.
+A sandbox webapp for playing with javascript in the browser. the ultimate learning tool. Take data you can grab from the cat-factory and code away inside this virtual environment. Saving and loading the functions to Google Cloud Datastore via Cloud Functions.
 
 [![GitHub issues](https://img.shields.io/github/issues/thejordanprice/jsSandbox.svg)](https://github.com/thejordanprice/jsSandbox/issues)
 [![GitHub forks](https://img.shields.io/github/forks/thejordanprice/jsSandbox.svg)](https://github.com/thejordanprice/jsSandbox/network)
@@ -19,11 +19,12 @@ A sandbox webapp for playing with javascript in the browser. the ultimate learni
 1. I think its a pretty fun idea to send our individual functions that eval to help each other all learn.
 2. I needed a project to work on that wasn't completely boring (something that might grow, cough).
 3. I love coding and teaching people how to code, I think this is the perfect platform for doing so.
-4. Don't we all love coding?
+4. Don't we all love coding? What about the possiblity to share a snippet of good code?
 
 ### To-Do
 
 - [x] Prototype.
+- [ ] Some more error checking.
 - [x] Saving the functions.
 - [ ] Loading the functions.
 - [ ] Cloud function integration with db.

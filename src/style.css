@@ -8,6 +8,10 @@ body {
   transition: background 2s ease-in-out;
 }
 
+#response {
+  transition: background 2s ease-in-out;
+}
+
 .container {
   padding-top: 15px;
 }
