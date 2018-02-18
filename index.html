@@ -45,7 +45,7 @@
     <input class='form-control' type='text' id='title' placeholder='0.0.1-alpha-beta' />
   </div>
   <div class='form-group'>
-    <label for='sandbox'>Function Sandbox &nbsp;<small id='exampleOne'>Example #1</small> &nbsp;<small id='exampleTwo'>Example #2</small> &nbsp;<small id='exampleThree'>Example #3</small> &nbsp;<button class='btn btn-primary' id='submit'>Run &nbsp;<i class='fas fa-rocket'></i></button> &nbsp;<button class='btn btn-info' id='trash'>Clear &nbsp;<i class='fas fa-eraser'></i></button> &nbsp;<button class='btn btn-secondary' id='save'>Save &nbsp;<i class='fas fa-save'></i></button> &nbsp;<button class='btn btn-disabled' id='load'>Load &nbsp;<i class='fas fa-cloud-download-alt'></i></button>  &nbsp;<button class='btn btn-secondary float-xs-right' id='destroy'>Destroy &nbsp;<i class='fas fa-trash'></i></button></label>
+    <label for='sandbox'>Function Sandbox &nbsp;<small id='exampleOne'>Example #1</small> &nbsp;<small id='exampleTwo'>Example #2</small> &nbsp;<small id='exampleThree'>Example #3</small> &nbsp;<button class='btn btn-primary' id='submit'>Run &nbsp;<i class='fas fa-rocket'></i></button> &nbsp;<button class='btn btn-info' id='trash'>Clear &nbsp;<i class='fas fa-eraser'></i></button> &nbsp;<button class='btn btn-secondary' id='save'>Save &nbsp;<i class='fas fa-save'></i></button> &nbsp;<button class='btn btn-secondary' id='load'>Load &nbsp;<i class='fas fa-cloud-download-alt'></i></button>  &nbsp;<button class='btn btn-secondary float-xs-right' id='destroy'>Destroy &nbsp;<i class='fas fa-trash'></i></button></label>
     <textarea class='form-control' id='sandbox' rows='8' placeholder='`use strict`;
 
 const x = (a, b) => {
@@ -87,6 +87,7 @@ const random = document.getElementById('random');
 const exampleOne = document.getElementById('exampleOne');
 const exampleTwo = document.getElementById('exampleTwo');
 const exampleThree = document.getElementById('exampleThree');
+const loadbutton = document.getElementById('load');
 
 /**
  * A good posting setup.
@@ -100,10 +101,10 @@ const promisedFetch = (url, method, data) => {
     xhr.send(body);
     xhr.onerror = (err) => {
       reject({"error":err})
-    }
+    };
     xhr.onload = () => {
       resolve(xhr.response);
-    }
+    };
   });
 }
 
@@ -235,7 +236,6 @@ main();`;
   return string;
 };
 
-
 /**
  * Saving into the cloud, eventually then a load function.
  */
@@ -263,9 +263,8 @@ const saveFunction = () => {
   /**
    * Sending the function via post.
    */
-  const url = 'https://us-central1-dev-box-175801.cloudfunctions.net/savefunc';
-  promisedFetch(url, "POST", data)
-  //.then(console.log)
+  promisedFetch('https://us-central1-dev-box-175801.cloudfunctions.net/savefunc', "POST", data)
+  .then(console.log)
   .then(() => {
     let element = document.createElement('div');
     element.id = 'alert';
@@ -276,15 +275,35 @@ const saveFunction = () => {
   })
   //.catch(console.log)
   .catch(() => {
-    let element = document.createElement('div');
-    element.id = 'alert';
-    element.class = 'alert alert-info';
-    element.role = 'alert';
-    element.innerHTML = 'It did not succesfully save ID: ' + data.id;
-    document.getElementById('app').prepend(element);
-  })
+    if (data.code != 200) {
+      let element = document.createElement('div');
+      element.id = 'alert';
+      element.class = 'alert alert-info';
+      element.role = 'alert';
+      element.innerHTML = 'It did not succesfully save.';
+      document.getElementById('app').prepend(element);
+    };
+  });
 };
 
+const loadFunctionById = () => {
+  let input = prompt('What is the ID of the requested function?').trim();
+  let url = 'https://us-central1-dev-box-175801.cloudfunctions.net/getfunc';
+  let data = JSON.stringify({id:input});
+  //console.log(data);
+  promisedFetch(url, "POST", data)
+  .then(console.log)
+  //console.log(input);
+};
+
+/**
+ * Loading out of the cloud via id.
+ */
+// load button to give input dialog.
+loadbutton.addEventListener('click', () => {
+  loadFunctionById();
+  return false;
+});
 
 // load example 1 code into sandbox.
 exampleOne.addEventListener('click', () => {
