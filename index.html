@@ -228,7 +228,7 @@ const saveFunction = () => {
       date: new Date().valueOf(),
       name: title.value.trim(),
       work: sandbox.innerHTML.trim(),
-    }
+    },
   };
   // error checking
   if (data.work === '') {
@@ -252,9 +252,9 @@ const saveFunction = () => {
     mode: 'no-cors', 
     redirect: 'follow',
     body: JSON.stringify(data),
-    headers: new Headers({
-      'Content-Type': 'application/json'
-    })
+    headers: new Headers([
+      ['Content-Type', 'application/json']
+    ])
   }).then((res) => console.log(res));
 };
 
