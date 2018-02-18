@@ -277,7 +277,10 @@ const saveFunction = () => {
   .catch(console.log)
 };
 
-// WIP LOADING THEM FROM THE DB.
+/**
+ * Loading from cloud function.
+ * WIP
+ */ 
 const loadFunction = () => {
   //let input = alert('This is almost complete.');
   let input = prompt('What is the ID of the requested function?').trim();
@@ -288,9 +291,6 @@ const loadFunction = () => {
   //console.log(input);
 };
 
-/**
- * Loading out of the cloud via id.
- */
 // load button to give input dialog.
 loadbutton.addEventListener('click', () => {
   loadFunction();
