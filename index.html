@@ -279,12 +279,10 @@ const saveFunction = () => {
 
 // WIP LOADING THEM FROM THE DB.
 const loadFunction = () => {
-  let input = alert('This is almost complete.');
-  // let input = prompt('What is the ID of the requested function?').trim();
-  let url = 'https://us-central1-dev-box-175801.cloudfunctions.net/getfunc';
-  let data = JSON.stringify({'id':input});
-  //console.log(data);
-  promisedFetch(url, "POST", data)
+  //let input = alert('This is almost complete.');
+  let input = prompt('What is the ID of the requested function?').trim();
+  let url = 'https://us-central1-dev-box-175801.cloudfunctions.net/getfunc?id=' + input;
+  promisedFetch(url, "GET", true)
   .then(console.log)
   //console.log(input);
 };
