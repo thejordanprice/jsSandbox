@@ -10,13 +10,13 @@ A sandbox webapp for playing with javascript in the browser. the ultimate learni
 
 **Demo** https://thejordanprice.github.io/jsSandbox
 
-### Screenshot (alpha)
+#### Screenshot (alpha)
 
 ![Screenshot](https://i.imgur.com/KY3lHe2.png)
 
 ### Why
 
-1. I think its a pretty fun idea to send are individual functions that eval to help eachother all learn.
+1. I think its a pretty fun idea to send our individual functions that eval to help each other all learn.
 2. I needed a project to work on that wasn't completely boring (something that might grow, cough).
 3. I love coding and teaching people how to code, I think this is the perfect platform for doing so.
 
