@@ -47,16 +47,7 @@
     <input class='form-control' type='text' id='title' placeholder='0.0.1-alpha-beta' />
   </div>
   <div class='form-group'>
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <label for='sandbox'>Function Sandbox</label>
-          <small id='exampleOne'>Example #1</small> &nbsp;<small id='exampleTwo'>Example #2</small> &nbsp;<small id='exampleThree'>Example #3</small>
-          <button class='btn btn-primary' id='submit'>Run &nbsp;<i class='fas fa-rocket'></i></button> &nbsp;<button class='btn btn-info' id='trash'>Clear &nbsp;<i class='fas fa-eraser'></i></button> &nbsp;<button class='btn btn-secondary' id='save'>Save &nbsp;<i class='fas fa-save'></i></button> &nbsp;<button class='btn btn-secondary' id='load'>Load &nbsp;<i class='fas fa-cloud-download-alt'></i></button>  &nbsp;<button class='btn btn-secondary float-xs-right' id='destroy'>Destroy &nbsp;<i class='fas fa-trash'></i></button>
-        </div>
-      </div>
-    </div>
-    <br />
+    <label for='sandbox'>Function Sandbox &nbsp;<small id='exampleOne'>Example #1</small> &nbsp;<small id='exampleTwo'>Example #2</small> &nbsp;<small id='exampleThree'>Example #3</small> &nbsp;<button class='btn btn-primary' id='submit'>Run &nbsp;<i class='fas fa-rocket'></i></button> &nbsp;<button class='btn btn-info' id='trash'>Clear &nbsp;<i class='fas fa-eraser'></i></button> &nbsp;<button class='btn btn-secondary' id='save'>Save &nbsp;<i class='fas fa-save'></i></button> &nbsp;<button class='btn btn-secondary' id='load'>Load &nbsp;<i class='fas fa-cloud-download-alt'></i></button>  &nbsp;<button class='btn btn-secondary float-xs-right' id='destroy'>Destroy &nbsp;<i class='fas fa-trash'></i></button></label>
     <textarea class='form-control' id='sandbox' rows='8' placeholder='`use strict`;
 
 const x = (a, b) => {
@@ -65,8 +56,8 @@ const x = (a, b) => {
 
 x(4,8);'></textarea>
   </div>
-  <label for='response'>Response</label>
-  <pre class='form-control' id='response'>null</pre>
+    <label for='response'>Response</label>
+    <pre class='form-control' id='response'>null</pre>
   <br />
   <div class='text-center'>
 
