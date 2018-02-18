@@ -273,9 +273,9 @@ const saveFunction = () => {
     element.innerHTML = 'You successfully saved as ID: ' + data.id;
     document.getElementById('app').prepend(element);
   })
-  //.catch(console.log)
-  .catch(() => {
-    if (data.code != 200) {
+  .catch(console.log)
+  .catch((data) => {
+    if (data.code !== 200) {
       let element = document.createElement('div');
       element.id = 'alert';
       element.class = 'alert alert-info';
