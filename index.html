@@ -260,7 +260,7 @@ const saveFunction = () => {
   /**
    * Sending the function via post.
    */
-  // let url = 'https://postman-echo.com/post';
+  // const url = 'https://postman-echo.com/post';
   // const url = 'https://us-central1-dev-box-175801.cloudfunctions.net/savefunc';
   const url = 'https://us-central1-dev-project-9000.cloudfunctions.net/savefunc';
   GoodFetch(url,"POST",JSON.stringify(data)).then(console.log);
