@@ -127,7 +127,7 @@ const evaluate = () => {
     // start creating a work object
     let work = {
       // just a couple things in the work object
-      id: Math.random().toString(32).substr(2, 32),
+      id: Math.random().toString(128).substr(2, 32),
       start: new Date().toLocaleString(),
       name: title.value.trim(),
       work: sandbox.value.trim(),
@@ -193,8 +193,8 @@ const saveFunction = () => {
     id: Math.random().toString(32).substr(2, 32),
     data: {
       date: new Date().valueOf(),
-      name: title.value.trim() || 'Anonymous',
-      author: author.innerHTML.trim(),
+      name: title.value.trim(),
+      author: author.value.trim() || 'Anonymous',
       work: sandbox.innerHTML.trim(),
     },
   };
