@@ -189,6 +189,7 @@ const randomTitle = () => {
  * Saving into the cloud, eventually then a load function.
  */
 const saveFunction = () => {
+  let error = false;
   let data = {
     id: Math.random().toString(32).substr(2, 32),
     data: {
@@ -198,7 +199,18 @@ const saveFunction = () => {
       work: sandbox.innerHTML.trim(),
     },
   };
-  if (data.data.name.length > 0 || data.data.work.length > 0) {
+  
+  // error checking
+  if (!data.data.work) {
+    error = true;
+    notifications.innerHTML = 'You did not specifiy any work.';
+  };
+  if (!data.data.name) {
+    error = true;
+    notifications.innerHTML = 'You did not specifiy a title.';
+  };
+
+  if (!error) {
     /**
     * Sending the function via post.
     */
@@ -215,9 +227,7 @@ const saveFunction = () => {
         document.getElementById('response').innerHTML = JSON.stringify(usable, null, 2);
       };
     })
-  } else {
-    notifications.innerHTML = 'Either the title or the code was missing...';
-  }
+  };
   return false;
 };
 
