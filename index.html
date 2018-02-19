@@ -205,7 +205,7 @@ const saveFunction = () => {
     promisedFetch('https://us-central1-dev-box-175801.cloudfunctions.net/savefunc', "POST", data)
     .then((json) => {
       let usable = JSON.parse(json);
-      console.log(usable);
+      // console.log(usable);
       if (usable["code"] === 400) {
         notifications.innerHTML = 'You did not successfull save.<br />Hamsters may be warming up, try again...';
         document.getElementById('response').innerHTML = JSON.stringify(usable, null, 2);
