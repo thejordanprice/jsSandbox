@@ -40,17 +40,12 @@
 <!-- main content. -->
 <div class='container' id='app'>
   <div class='text-center'>
-    <p id='notifications'></p>
     <small><i>Functions at their finest.</i></small>
   </div>
   <div class='form-group'>
     <label for='title'>Title &nbsp;<button class='btn btn-secondary' id='random'>Random &nbsp;<i class='fas fa-random'></i></button></label>
     <input class='form-control' type='text' id='title' placeholder='0.0.1-alpha-beta' />
   </div>
-  <div class='form-group'>
-      <label for='author'>Author</label>
-      <input class='form-control' type='text' id='author' placeholder='John Doe' />
-    </div>
   <div class='form-group'>
     <label for='sandbox'>Function Sandbox &nbsp;<small id='exampleOne'>Example #1</small> &nbsp;<small id='exampleTwo'>Example #2</small> &nbsp;<small id='exampleThree'>Example #3</small> &nbsp;<button class='btn btn-primary' id='submit'>Run &nbsp;<i class='fas fa-rocket'></i></button> &nbsp;<button class='btn btn-info' id='trash'>Clear &nbsp;<i class='fas fa-eraser'></i></button> &nbsp;<button class='btn btn-secondary' id='save'>Save &nbsp;<i class='fas fa-save'></i></button> &nbsp;<button class='btn btn-secondary' id='load'>Load &nbsp;<i class='fas fa-cloud-download-alt'></i></button>  &nbsp;<button class='btn btn-secondary float-xs-right' id='destroy'>Destroy &nbsp;<i class='fas fa-trash'></i></button></label>
     <textarea class='form-control' id='sandbox' rows='8' placeholder='`use strict`;
@@ -94,8 +89,6 @@ const exampleOne = document.getElementById('exampleOne');
 const exampleTwo = document.getElementById('exampleTwo');
 const exampleThree = document.getElementById('exampleThree');
 const loadbutton = document.getElementById('load');
-const author = document.getElementById('author');
-const notifications = document.getElementById('notifications');
 
 /**
  * A good posting setup.
@@ -127,7 +120,7 @@ const evaluate = () => {
     // start creating a work object
     let work = {
       // just a couple things in the work object
-      id: Math.random().toString(128).substr(2, 32),
+      id: Math.random().toString(32).substr(2, 32),
       start: new Date().toLocaleString(),
       name: title.value.trim(),
       work: sandbox.value.trim(),
@@ -161,19 +154,25 @@ const evaluate = () => {
       // running function above.
     evaluation(work);
   } else {
-    if (work.work.length > 0 || work.name.length > 0) {
-      let stop = new Date().valueOf();
-      let timer = (stop - start);
-      let error = {
-        error: 9001,
-        data: {
-          execution: timer + 'ms',
-          message: errors,
-        },
-        status: false,
-      };
-      response.innerHTML = JSON.stringify(error, null, 2);
-    }
+    // missing information.
+    let errors = [];
+    if (sandbox.value === '') {
+      errors.push('There was no function input.');
+    };
+    if (title.value === '') {
+      errors.push('There was no title input.');
+    };
+    let stop = new Date().valueOf();
+    let timer = (stop - start);
+    let error = {
+      error: 9001,
+      data: {
+        execution: timer + 'ms',
+        message: errors,
+      },
+      status: false,
+    };
+    response.innerHTML = JSON.stringify(error, null, 2);
   }
   return false;
 };
@@ -189,45 +188,41 @@ const randomTitle = () => {
  * Saving into the cloud, eventually then a load function.
  */
 const saveFunction = () => {
-  let error = false;
+  // organize our data we want to send.
+  let errors = [];
   let data = {
     id: Math.random().toString(32).substr(2, 32),
     data: {
       date: new Date().valueOf(),
       name: title.value.trim(),
-      author: author.value.trim() || 'Anonymous',
       work: sandbox.innerHTML.trim(),
     },
   };
-  
   // error checking
-  if (!data.data.work) {
-    error = true;
-    notifications.innerHTML = 'You did not specifiy any work.';
+  if (data.work === '') {
+    errors.push('There was no work provided.');
   };
-  if (!data.data.name) {
-    error = true;
-    notifications.innerHTML = 'You did not specifiy a title.';
+  if (data.name === '') {
+    errors.push('There was no name provided.');
   };
-
-  if (!error) {
-    /**
-    * Sending the function via post.
-    */
-    promisedFetch('https://us-central1-dev-box-175801.cloudfunctions.net/savefunc', "POST", data)
-    .then((json) => {
-      let usable = JSON.parse(json);
-      // console.log(usable);
-      if (usable["code"] === 400) {
-        notifications.innerHTML = 'You did not successfull save.<br />Hamsters may be warming up, try again...';
-        document.getElementById('response').innerHTML = JSON.stringify(usable, null, 2);
-      };
-      if (usable["code"] === 200) {
-        notifications.innerHTML = 'You successfully saved as ID: ' + data.id;
-        document.getElementById('response').innerHTML = JSON.stringify(usable, null, 2);
-      };
-    })
-  };
+  // send the data off to the cloud.
+  // console.log(data);
+  response.innerHTML = JSON.stringify(data, null, 2);
+  /**
+   * Sending the function via post.
+   */
+  promisedFetch('https://us-central1-dev-box-175801.cloudfunctions.net/savefunc', "POST", data)
+  .then(console.log)
+  .then(() => {
+    let element = document.createElement('div');
+    element.id = 'alert';
+    element.class = 'alert alert-success';
+    element.role = 'alert';
+    element.innerHTML = 'You successfully saved as ID: ' + data.id;
+    document.getElementById('app').prepend(element);
+  })
+  // its sometimes not saving :P
+  .catch(console.log)
   return false;
 };
 
@@ -256,9 +251,13 @@ const loadFunction = () => {
       // console.log(viewable);
       title.value = json.data.name;
       sandbox.innerHTML = json.data.work;
-      author.value = json.data.author;
-      notifications.innerHTML = 'You successfully loaded as ID: ' + json.id;
-      document.getElementById('response').innerHTML = JSON.stringify(json, null, 2);      
+      document.getElementById('response').innerHTML = 'Load Successful.';
+      let element = document.createElement('div');
+      element.id = 'alert';
+      element.class = 'alert alert-success';
+      element.role = 'alert';
+      element.innerHTML = 'You successfully loaded as ID: ' + json.id;
+      document.getElementById('app').prepend(element);
     })
   }).catch(console.log);
   return false;
