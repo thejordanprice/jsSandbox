@@ -246,7 +246,7 @@ const loadFunction = () => {
   response.then(result => {
     result.json().then(json => {
       let viewable = JSON.stringify(json, null, 2);
-      console.log(viewable);
+      // console.log(viewable);
       title.value = json.data.name;
       sandbox.innerHTML = json.data.work;
       document.getElementById('response').innerHTML = 'Load Successful.';
