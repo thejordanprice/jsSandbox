@@ -225,7 +225,7 @@ const saveFunction = () => {
       element.role = 'alert';
       element.innerHTML = 'You did not successfull save.<br />Hamsters may be warming up, try again...';
       document.getElementById('app').prepend(element);
-      document.getElementById('response').value = 'will display response from server...'
+      document.getElementById('response').innerHTML = JSON.stringify(usable, null, 2);
     };
     if (usable["code"] === 200) {
       let element = document.createElement('div');
@@ -234,7 +234,7 @@ const saveFunction = () => {
       element.role = 'alert';
       element.innerHTML = 'You successfully saved as ID: ' + data.id;
       document.getElementById('app').prepend(element);
-      document.getElementById('response').value = 'will display response from server...'
+      document.getElementById('response').innerHTML = JSON.stringify(usable, null, 2);
     };
   })
   // its sometimes not saving :P
@@ -274,6 +274,7 @@ const loadFunction = () => {
       element.role = 'alert';
       element.innerHTML = 'You successfully loaded as ID: ' + json.id;
       document.getElementById('app').prepend(element);
+      document.getElementById('response').innerHTML = JSON.stringify(json, null, 2);      
     })
   }).catch(console.log);
   return false;
