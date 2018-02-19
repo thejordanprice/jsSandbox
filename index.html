@@ -184,6 +184,70 @@ const randomTitle = () => {
 };
 
 /**
+ * Saving into the cloud, eventually then a load function.
+ */
+const saveFunction = () => {
+  // organize our data we want to send.
+  let errors = [];
+  let data = {
+    id: Math.random().toString(32).substr(2, 32),
+    data: {
+      date: new Date().valueOf(),
+      name: title.value.trim(),
+      work: sandbox.innerHTML.trim(),
+    },
+  };
+  // error checking
+  if (data.work === '') {
+    errors.push('There was no work provided.');
+  };
+  if (data.name === '') {
+    errors.push('There was no name provided.');
+  };
+  // send the data off to the cloud.
+  // console.log(data);
+  response.innerHTML = JSON.stringify(data, null, 2);
+  /**
+   * Sending the function via post.
+   */
+  promisedFetch('https://us-central1-dev-box-175801.cloudfunctions.net/savefunc', "POST", data)
+  .then(console.log)
+  .then(() => {
+    let element = document.createElement('div');
+    element.id = 'alert';
+    element.class = 'alert alert-success';
+    element.role = 'alert';
+    element.innerHTML = 'You successfully saved as ID: ' + data.id;
+    document.getElementById('app').prepend(element);
+  })
+  // its sometimes not saving :P
+  .catch(console.log)
+};
+
+/**
+ * Loading from cloud function.
+ * WIP
+ */ 
+const loadFunction = () => {
+  //let input = alert('This is almost complete.');
+  let input = prompt('What is the ID of the requested function?').trim();
+  let url = 'https://us-central1-dev-box-175801.cloudfunctions.net/getfunc?id=' + input;
+  console.log(url);
+
+  fetch(url).then((response) => {
+    console.log(response);
+  }).catch(console.log)
+
+  let error = {
+    error: 500,
+    message: 'Loading is not working at the moment...',
+    status: true,
+  }
+  sandbox.innerHTML = '';
+  response.innerHTML = JSON.stringify(error, null, 2);
+};
+
+/**
  * Displaying Examples
  */
 const displayExampleOne = () => {
@@ -236,76 +300,6 @@ const main = () => {
 main();`;
   return string;
 };
-
-/**
- * Saving into the cloud, eventually then a load function.
- */
-const saveFunction = () => {
-  // organize our data we want to send.
-  let errors = [];
-  let data = {
-    id: Math.random().toString(32).substr(2, 32),
-    data: {
-      date: new Date().valueOf(),
-      name: title.value.trim(),
-      work: sandbox.innerHTML.trim(),
-    },
-  };
-  // error checking
-  if (data.work === '') {
-    errors.push('There was no work provided.');
-  };
-  if (data.name === '') {
-    errors.push('There was no name provided.');
-  };
-  // send the data off to the cloud.
-  // console.log(data);
-  response.innerHTML = JSON.stringify(data, null, 2);
-  /**
-   * Sending the function via post.
-   */
-  promisedFetch('https://us-central1-dev-box-175801.cloudfunctions.net/savefunc', "POST", data)
-  .then(console.log)
-  .then(() => {
-    let element = document.createElement('div');
-    element.id = 'alert';
-    element.class = 'alert alert-success';
-    element.role = 'alert';
-    element.innerHTML = 'You successfully saved as ID: ' + data.id;
-    document.getElementById('app').prepend(element);
-  })
-  // its sometimes not saving :P
-  .catch(console.log)
-};
-
-/**
- * Loading from cloud function.
- * WIP
- */ 
-const loadFunction = () => {
-  //let input = alert('This is almost complete.');
-  let input = prompt('What is the ID of the requested function?').trim();
-  let url = 'https://us-central1-dev-box-175801.cloudfunctions.net/getfunc?id=' + input;
-  console.log(url);
-  fetch(url, { mode: 'no-cors' })
-  .then(console.log())
-  .catch(() => {})
-  let error = {
-    error: 500,
-    message: 'Loading is not working at the moment...',
-    status: true,
-  }
-  sandbox.innerHTML = '';
-  response.innerHTML = JSON.stringify(error, null, 2);
-};
-
-/**
-fetch(url + input,{
-  mode: 'no-cors'
-}).then((response) => {
-  console.log(response.type); // "opaque"
-}).catch(console.log)
-*/
 
 // load button to give input dialog.
 loadbutton.addEventListener('click', () => {
