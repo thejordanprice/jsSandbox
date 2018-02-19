@@ -246,6 +246,7 @@ const loadFunction = () => {
       // console.log(viewable);
       title.value = json.data.name;
       sandbox.innerHTML = json.data.work;
+      author.value = json.data.author;
       notifications.innerHTML = 'You successfully loaded as ID: ' + json.id;
       document.getElementById('response').innerHTML = JSON.stringify(json, null, 2);      
     })
