@@ -199,27 +199,43 @@ const saveFunction = () => {
     },
   };
   // error checking
-  if (data.work === '') {
-    errors.push('There was no work provided.');
+  if (data.work) {
+    if (data.work.value.length > 3) {
+      errors.push('That was not enough work provided.');
+    };
   };
-  if (data.name === '') {
-    errors.push('There was no name provided.');
+  if (data.name) {
+    if (data.name.value.length > 3) {
+      errors.push('That name was not large enough.');
+    };
   };
-  // send the data off to the cloud.
-  // console.log(data);
-  response.innerHTML = JSON.stringify(data, null, 2);
+
+  //if (errors) { console.log(errors) };
   /**
    * Sending the function via post.
    */
   promisedFetch('https://us-central1-dev-box-175801.cloudfunctions.net/savefunc', "POST", data)
-  .then(console.log)
-  .then(() => {
-    let element = document.createElement('div');
-    element.id = 'alert';
-    element.class = 'alert alert-success';
-    element.role = 'alert';
-    element.innerHTML = 'You successfully saved as ID: ' + data.id;
-    document.getElementById('app').prepend(element);
+  .then((json) => {
+    let usable = JSON.parse(json);
+    console.log(usable);
+    if (usable["code"] === 400) {
+      let element = document.createElement('div');
+      element.id = 'alert';
+      element.class = 'alert alert-success';
+      element.role = 'alert';
+      element.innerHTML = 'You did not successfull save.<br />Hamsters may be warming up, try again...';
+      document.getElementById('app').prepend(element);
+      document.getElementById('response').value = 'will display response from server...'
+    };
+    if (usable["code"] === 200) {
+      let element = document.createElement('div');
+      element.id = 'alert';
+      element.class = 'alert alert-success';
+      element.role = 'alert';
+      element.innerHTML = 'You successfully saved as ID: ' + data.id;
+      document.getElementById('app').prepend(element);
+      document.getElementById('response').value = 'will display response from server...'
+    };
   })
   // its sometimes not saving :P
   .catch(console.log)
