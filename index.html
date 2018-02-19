@@ -48,6 +48,10 @@
     <input class='form-control' type='text' id='title' placeholder='0.0.1-alpha-beta' />
   </div>
   <div class='form-group'>
+      <label for='author'>Author</label>
+      <input class='form-control' type='text' id='author' placeholder='John Doe' />
+    </div>
+  <div class='form-group'>
     <label for='sandbox'>Function Sandbox &nbsp;<small id='exampleOne'>Example #1</small> &nbsp;<small id='exampleTwo'>Example #2</small> &nbsp;<small id='exampleThree'>Example #3</small> &nbsp;<button class='btn btn-primary' id='submit'>Run &nbsp;<i class='fas fa-rocket'></i></button> &nbsp;<button class='btn btn-info' id='trash'>Clear &nbsp;<i class='fas fa-eraser'></i></button> &nbsp;<button class='btn btn-secondary' id='save'>Save &nbsp;<i class='fas fa-save'></i></button> &nbsp;<button class='btn btn-secondary' id='load'>Load &nbsp;<i class='fas fa-cloud-download-alt'></i></button>  &nbsp;<button class='btn btn-secondary float-xs-right' id='destroy'>Destroy &nbsp;<i class='fas fa-trash'></i></button></label>
     <textarea class='form-control' id='sandbox' rows='8' placeholder='`use strict`;
 
@@ -90,6 +94,7 @@ const exampleOne = document.getElementById('exampleOne');
 const exampleTwo = document.getElementById('exampleTwo');
 const exampleThree = document.getElementById('exampleThree');
 const loadbutton = document.getElementById('load');
+const author = document.getElementById('author');
 const notifications = document.getElementById('notifications');
 
 /**
@@ -188,7 +193,8 @@ const saveFunction = () => {
     id: Math.random().toString(32).substr(2, 32),
     data: {
       date: new Date().valueOf(),
-      name: title.value.trim(),
+      name: title.value.trim() || 'Anonymous',
+      author: author.innerHTML.trim(),
       work: sandbox.innerHTML.trim(),
     },
   };
@@ -201,7 +207,7 @@ const saveFunction = () => {
       let usable = JSON.parse(json);
       console.log(usable);
       if (usable["code"] === 400) {
-        notificiations.innerHTML = 'You did not successfull save.<br />Hamsters may be warming up, try again...';
+        notifications.innerHTML = 'You did not successfull save.<br />Hamsters may be warming up, try again...';
         document.getElementById('response').innerHTML = JSON.stringify(usable, null, 2);
       };
       if (usable["code"] === 200) {
