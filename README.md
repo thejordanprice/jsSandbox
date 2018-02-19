@@ -25,9 +25,10 @@ A sandbox webapp for playing with javascript in the browser. the ultimate learni
 
 - [x] Prototype.
 - [ ] Some more error checking.
+- [ ] GUI updates.
 - [x] Saving the functions.
-- [ ] Loading the functions.
-- [ ] Cloud function integration with db.
+- [x] Loading the functions.
+- [x] Cloud function integration with db.
 - [ ] Code syntax highlighting.
 - [ ] Share URL (copy thing).
 
