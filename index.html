@@ -218,7 +218,7 @@ const saveFunction = () => {
       code: sandbox.value,
     },
   };
-  // send the data off to the cloud.
+  notifications.innerHTML = 'Saving function with the ID: ' + data.id;
   responsed.innerHTML = JSON.stringify(data, null, 2);
   /**
     * Sending the function via post.
