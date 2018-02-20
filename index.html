@@ -194,12 +194,11 @@ const saveFunction = () => {
     data: {
       date: new Date().valueOf(),
       name: title.value.trim(),
-      work: sandbox.innerHTML.trim(),
+      code: sandbox.value,
     },
   };
   // send the data off to the cloud.
-  // console.log(data);
-  responsed.innerHTML = JSON.stringify({'sending':data}, null, 2);
+  responsed.innerHTML = JSON.stringify(data, null, 2);
   /**
     * Sending the function via post.
     */
@@ -234,7 +233,7 @@ const loadFunction = () => {
     .then((json) => {
       let usable = JSON.parse(json);
       title.value = usable.data.name;
-      sandbox.innerHTML = usable.data.work;
+      sandbox.innerHTML = usable.data.code;
       responsed.innerHTML = JSON.stringify(usable, null, 2);
       notifications.innerHTML = 'You successfully loaded ID: ' + usable.id;
     }).catch(console.log);
