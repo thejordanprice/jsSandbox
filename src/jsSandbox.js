@@ -28,6 +28,7 @@ window.onload = () => {
   ];
   let fact = facts[Math.floor(Math.random() * facts.length)];
   document.getElementById('fact').innerHTML = fact;
+  return false;
 };
 
 /**
@@ -93,6 +94,7 @@ let evaluate = () => {
       }
       // running function above.
     evaluation(work);
+    return false;
   } else {
     // errors missing information.
     let errors = [];
@@ -171,6 +173,7 @@ const saveFunction = () => {
       responsed.innerHTML = JSON.stringify(usable, null, 2);
     };
   });
+  return false;
 };
 
 /**
