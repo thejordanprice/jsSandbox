@@ -140,7 +140,7 @@ const saveFunction = () => {
     data: {
       date: new Date().valueOf(),
       name: title.value.trim(),
-      code: sandbox.innerHTML.toString(),
+      code: sandbox.value.toString(),
     },
   };
   // error checking
@@ -192,7 +192,7 @@ const loadFunction = () => {
       let usable = JSON.parse(json);
       if (usable.id !== undefined) {
         title.value = usable.data.name;
-        sandbox.innerHTML = usable.data.code;
+        sandbox.value = usable.data.code;
         responsed.innerHTML = JSON.stringify(usable, null, 2);
         notifications.innerHTML = 'You successfully loaded ID: ' + usable.id;
       } else {
