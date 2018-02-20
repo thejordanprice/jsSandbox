@@ -110,7 +110,7 @@ let evaluate = () => {
       id: Math.random().toString(32).substr(2, 32),
       start: new Date().toLocaleString(),
       name: title.value.trim(),
-      work: sandbox.value.trim(),
+      work: sandbox.innerHTML.value,
     };
     let evaluation = (work) => {
         // attempt the work
@@ -140,7 +140,6 @@ let evaluate = () => {
       }
       // running function above.
     evaluation(work);
-    return false;
   } else {
     // errors missing information.
     let errors = [];
@@ -149,9 +148,6 @@ let evaluate = () => {
     };
     if (title.value === '') {
       errors.push('There was no title input.');
-    };
-    if (title.value.length && sandbox.value.length) {
-      errors.push('An unknown error happened, possibly syntax.');
     };
     // stop timer and throw dumb error.
     let stop = new Date().valueOf();
