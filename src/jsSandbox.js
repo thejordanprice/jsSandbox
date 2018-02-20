@@ -277,23 +277,11 @@ exampleThree.addEventListener('click', () => {
   return false;
 });
 
-// add trash for just sandbox
-trash.addEventListener('click', () => {
-	sandbox.innerHTML = '';
-  return false;
-});
-
 // initiate random title generator.
 random.addEventListener('click', () => {
   title.value = randomTitle();
   return false;
 });
-
-trash.addEventListener('click', () => {
-  responsed.innerHTML = 'cleared';
-  sandbox.value = '';
-  return false;
-})
 
 // to clear out said data easily
 destroy.addEventListener('click', () => {
