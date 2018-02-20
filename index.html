@@ -18,7 +18,7 @@
 <!-- nav bar -->
 <div class='container'>
 <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
-  <a class='navbar-brand' href='https://thejordanprice.github.io/jsSandbox' target='_blank'><i class='fas fa-pen-square'></i> jsSandbox</a>
+  <a class='navbar-brand' href='https://thejordanprice.github.io/jsSandbox' target='_parent'><i class='fas fa-edit'></i> jsSandbox</a>
   <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
     <span class='navbar-toggler-icon'></span>
   </button>
@@ -31,7 +31,7 @@
         <a class='nav-link' href='https://github.com/thejordanprice' target='_parent'><i class='fab fa-github' aria-hidden='true'></i> Github</a>
       </li>
       <li class='nav-item'>
-        <a class='nav-link disabled' href='#'><i class='fas fa-user' aria-hidden='true'></i> thejordanprice</a>
+        <a class='nav-link' href='https://github.com/thejordanprice' target='_parent'><i class='fas fa-user' aria-hidden='true'></i> thejordanprice</a>
       </li>
     </ul>
   </div>
@@ -61,7 +61,7 @@
       <button class='btn btn-info' id='trash'>Clear &nbsp;<i class='fas fa-eraser'></i></button>
       <button class='btn btn-secondary' id='save'>Save &nbsp;<i class='fas fa-save'></i></button>
       <button class='btn btn-secondary' id='load'>Load &nbsp;<i class='fas fa-cloud-download-alt'></i></button>
-      <button class='btn btn-secondary' id='destroy'>Destroy &nbsp;<i class='fas fa-trash'></i></button>
+      <button class='btn btn-secondary' id='destroy'>Erase &nbsp;<i class='fas fa-trash'></i></button>
     </div>
     <br /><br />
     <textarea class='form-control' id='sandbox' rows='8' placeholder='`use strict`;
@@ -102,6 +102,7 @@ const exampleOne = document.getElementById('exampleOne');
 const exampleTwo = document.getElementById('exampleTwo');
 const exampleThree = document.getElementById('exampleThree');
 const loadbutton = document.getElementById('load');
+const trashbutton = document.getElementById('trash');
 
 /**
  * A good posting setup.
@@ -244,6 +245,7 @@ const loadFunction = () => {
   } else {
     return;
   };
+  notifications.innerHTML = 'Loading from DB...';
   promisedFetch('https://us-central1-dev-box-175801.cloudfunctions.net/getfunc?id=' + input, "GET", true)
     .then((json) => {
       let usable = JSON.parse(json);
@@ -343,6 +345,12 @@ random.addEventListener('click', () => {
   title.value = randomTitle();
   return false;
 });
+
+trash.addEventListener('click', () => {
+  responsed.innerHTML = 'cleared';
+  sandbox.value = '';
+  return false;
+})
 
 // to clear out said data easily
 destroy.addEventListener('click', () => {
