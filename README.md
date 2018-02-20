@@ -12,7 +12,7 @@ A sandbox webapp for playing with javascript in the browser. the ultimate learni
 
 #### Screenshot (alpha)
 
-![Screenshot](https://i.imgur.com/KY3lHe2.png)
+![Screenshot](https://i.imgur.com/mXcdCFm.png)
 
 ### Why
 
@@ -29,7 +29,7 @@ A sandbox webapp for playing with javascript in the browser. the ultimate learni
 - [x] Saving the functions.
 - [x] Loading the functions.
 - [x] Cloud function integration with db.
-- [ ] Code syntax highlighting.
+- [ ] Code syntax highlighting. (Seems to be a bit rough to do)
 - [ ] Share URL (copy thing).
 
 ### License
