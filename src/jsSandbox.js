@@ -127,7 +127,7 @@ let evaluate = () => {
  * A lame random title generator.
  */
 const randomTitle = () => {
-  return Math.random().toString(16).substr(6, 6) + "-v" + (Math.random() * ((0.35) - (-0.35)) + -0.35).toFixed(2);
+  return Math.random().toString(16).substr(8, 8) + "-v" + (Math.random() * ((0.35) - (-0.35)) + -0.35).toFixed(2);
 };
 
 /**
