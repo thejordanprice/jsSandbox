@@ -30,7 +30,7 @@ A sandbox webapp for playing with javascript in the browser. the ultimate learni
 - [x] Loading the functions.
 - [x] Cloud function integration with db.
 - [ ] Code syntax highlighting. (Seems to be a bit rough to do)
-- [ ] Share URL (copy thing).
+- [x] Share URL (copy thing).
 
 ### License
 
