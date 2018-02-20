@@ -22,7 +22,7 @@ const trashbutton = document.getElementById('trash');
 window.onload = () => {
   const facts = [
     'Functions are their finest.',
-    'These get sent off to a place that doesn\'nt exist',
+    'These get sent off to a place that doesn\'nt exist.',
     'Did you know you could actually write code here?...',
     'This is like a fancy notepad with smart stuff in it.',
   ];
