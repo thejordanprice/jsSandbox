@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 /**
  * The JAVASCRIPT SECTION :D
  * The DOM hooks
@@ -25,6 +25,8 @@ window.onload = () => {
     'These get sent off to a place that doesn\'nt exist.',
     'Did you know you could actually write code here?...',
     'This is like a fancy notepad with smart stuff in it.',
+    'JavaScript was originally released on ‎December 4, 1995.',
+    'ECMAScript 2017 (the latest stable) was released as of June 2017',
   ];
   let fact = facts[Math.floor(Math.random() * facts.length)];
   document.getElementById('fact').innerHTML = fact;
@@ -49,6 +51,38 @@ const promisedFetch = (url, method, data) => {
     };
   });
 };
+
+/**
+ * The first steps to pages.
+ */
+const pages = () => {
+  let page = document.location.search;
+  if (page) {
+    let query = (page.split('='));
+    // if the page has ?id=someid
+    // console.log(query);
+    if (query[0] === '?id' || query[1].value) {
+      let id = query[1];
+      notifications.innerHTML = 'Loading from DB...';
+      promisedFetch('https://us-central1-dev-box-175801.cloudfunctions.net/getfunc?id=' + id, "GET", true)
+        .then(json => {
+          let usable = JSON.parse(json);
+          if (usable.id !== undefined) {
+            title.value = usable.data.name;
+            sandbox.value = usable.data.code;
+            responsed.innerHTML = JSON.stringify(usable, null, 2);
+            notifications.innerHTML = 'You successfully loaded ID: ' + usable.id;
+          } else {
+            notifications.innerHTML = 'That ID is not valid yet.';
+            responsed.innerHTML = JSON.stringify(usable, null, 2);
+          }
+        }
+      );
+    }
+  }
+}
+
+pages();
 
 /**
  * Our main on run function.
@@ -106,7 +140,7 @@ let evaluate = () => {
     };
     if (title.value.length && sandbox.value.length) {
       errors.push('An unknown error happened, possibly syntax.');
-    }
+    };
     // stop timer and throw dumb error.
     let stop = new Date().valueOf();
     let timer = (stop - start);
@@ -122,7 +156,7 @@ let evaluate = () => {
     errors = [];
     // put error inside the DOM.
     responsed.innerHTML = JSON.stringify(error, null, 2);
-  }
+  };
   return false;
 };
 
@@ -154,12 +188,12 @@ const saveFunction = () => {
   if (data.data.code.length < 2) {
     notifications.innerHTML = 'The code was not long enough...';
     return;
-  }
+  };
   // we'll save it i guess
   if (data.data.code.length && data.data.name.length) {
     notifications.innerHTML = 'Saving function with the ID: ' + data.id;
     responsed.innerHTML = JSON.stringify(data, null, 2);
-  }
+  };
 
   /**
     * Sending the function via post.
@@ -202,7 +236,7 @@ const loadFunction = () => {
         notifications.innerHTML = 'That ID is not valid yet.';
         responsed.innerHTML = JSON.stringify(usable, null, 2);
       }
-    })
+    });
   // :D
 };
 
