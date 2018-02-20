@@ -204,9 +204,7 @@ const loadFunction = () => {
  * Displaying Examples
  */
 const displayExampleOne = () => {
-  let string = `'use strict';
-
-const add = (a, b) => {
+  let string = `const add = (a, b) => {
   return a + b;
 };
 
@@ -215,8 +213,7 @@ add(1, 5);`;
 };
 
 const displayExampleTwo = () => {
-  let string = `'use strict';
-const multiply = (a, b) => {
+  let string = `const multiply = (a, b) => {
   return a * b;
 };
 const run = () => {
@@ -229,8 +226,7 @@ run();`;
 };
 
 const displayExampleThree = () => {
-  let string = `'use strict';
-const colors = [
+  let string = `const colors = [
   '#d0c2e1',
   '#bdb6d0',
   '#abaabe',
