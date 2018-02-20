@@ -24,7 +24,7 @@ A sandbox webapp for playing with javascript in the browser. the ultimate learni
 ### To-Do
 
 - [x] Prototype.
-- [ ] Some more error checking.
+- [x] Some more error checking.
 - [x] GUI updates.
 - [x] Saving the functions.
 - [x] Loading the functions.

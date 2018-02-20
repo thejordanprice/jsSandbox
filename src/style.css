@@ -57,6 +57,11 @@ body {
   color: #12A6BF;
 }
 
+.btn, #titleSquare {
+  background-color: #FFFFFF;
+  color: #000000;
+}
+
 .fa-heart {
   color: #12A6BF;
 }

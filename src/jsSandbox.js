@@ -33,7 +33,7 @@ const promisedFetch = (url, method, data) => {
       resolve(xhr.response);
     };
   });
-}
+};
 
 /**
  * Our main on run function.
@@ -80,7 +80,7 @@ let evaluate = () => {
       // running function above.
     evaluation(work);
   } else {
-    // missing information.
+    // errors missing information.
     let errors = [];
     if (sandbox.value === '') {
       errors.push('There was no function input.');
@@ -88,6 +88,7 @@ let evaluate = () => {
     if (title.value === '') {
       errors.push('There was no title input.');
     };
+    // stop timer and throw dumb error.
     let stop = new Date().valueOf();
     let timer = (stop - start);
     let error = {
@@ -100,6 +101,7 @@ let evaluate = () => {
       status: false,
     };
     errors = [];
+    // put error inside the DOM.
     responsed.innerHTML = JSON.stringify(error, null, 2);
   }
   return false;
@@ -125,6 +127,7 @@ const saveFunction = () => {
       code: sandbox.value,
     },
   };
+  // error checking
   if (data.data.name.length < 2) {
     notifications.innerHTML = 'The name was not long enough...';
     return;
@@ -133,14 +136,15 @@ const saveFunction = () => {
     notifications.innerHTML = 'The code was not long enough...';
     return;
   }
+  // we'll save it i guess
   if (data.data.code.length && data.data.name.length) {
     notifications.innerHTML = 'Saving function with the ID: ' + data.id;
     responsed.innerHTML = JSON.stringify(data, null, 2);
   }
+
   /**
     * Sending the function via post.
     */
-
   promisedFetch('https://us-central1-dev-box-175801.cloudfunctions.net/savefunc', "POST", data)
   .then((json) => {
     let usable = JSON.parse(json);
@@ -157,7 +161,6 @@ const saveFunction = () => {
 
 /**
  * Loading from cloud function.
- * WIP
  */ 
 const loadFunction = () => {
   let input = prompt('What is the ID of the requested function?');
@@ -179,7 +182,8 @@ const loadFunction = () => {
         notifications.innerHTML = 'That ID is not valid yet.';
         responsed.innerHTML = JSON.stringify(usable, null, 2);
       }
-    }).catch(console.log);
+    })
+  // :D
 };
 
 /**
