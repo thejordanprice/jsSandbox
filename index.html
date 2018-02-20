@@ -59,10 +59,6 @@ x(4,8);'></textarea>
   </div>
     <label for='response'>Response</label>
     <pre class='form-control' id='responsed'>null</pre>
-  <br />
-  <div class='text-center'>
-
-  </div>
 </div>
 <br />
 <br />
@@ -201,38 +197,26 @@ const saveFunction = () => {
       work: sandbox.innerHTML.trim(),
     },
   };
-  // error checking
-  if (data.data.work === '') {
-    errors = true;
-  };
-  if (data.data.name.value === '') {
-    errors = true;
-  };
-
-  if (!errors) {
-    // send the data off to the cloud.
-    // console.log(data);
-    responsed.innerHTML = JSON.stringify({'sending':data}, null, 2);
-    /**
-      * Sending the function via post.
-      */
-    promisedFetch('https://us-central1-dev-box-175801.cloudfunctions.net/savefunc', "POST", data)
-    .then((json) => {
-      let usable = JSON.parse(json);
-      // console.log(usable);
-      if (usable["code"] === 400) {
-        notifications.innerHTML = 'You did not successfully save.<br />Hamsters may be warming up, try again...';
-        responsed.innerHTML = JSON.stringify(usable, null, 2);
-      };
-      if (usable["code"] === 200) {
-        notifications.innerHTML = 'You successfully saved as ID: ' + data.id;
-        responsed.innerHTML = JSON.stringify(usable, null, 2);
-      };
-    });
-  } else {
-    notifications.innerHTML = 'There was missing input.';
-  }
-  return false;
+  // send the data off to the cloud.
+  // console.log(data);
+  responsed.innerHTML = JSON.stringify({'sending':data}, null, 2);
+  /**
+    * Sending the function via post.
+    */
+  promisedFetch('https://us-central1-dev-box-175801.cloudfunctions.net/savefunc', "POST", data)
+  .then((json) => {
+    let usable = JSON.parse(json);
+    console.log(usable);
+    // console.log(usable);
+    if (usable["code"] === 400) {
+      notifications.innerHTML = 'You did not successfully save.<br />Hamsters may be warming up, try again...';
+      responsed.innerHTML = JSON.stringify(usable, null, 2);
+    };
+    if (usable["code"] === 200) {
+      notifications.innerHTML = 'You successfully saved as ID: ' + data.id;
+      responsed.innerHTML = JSON.stringify(usable, null, 2);
+    };
+  });
 };
 
 /**
