@@ -214,7 +214,6 @@ const randomTitle = () => {
  */
 const saveFunction = () => {
   // organize our data we want to send.
-  let errors = false;
   let data = {
     id: Math.random().toString(32).substr(2, 32),
     data: {
@@ -223,15 +222,25 @@ const saveFunction = () => {
       code: sandbox.value,
     },
   };
-  notifications.innerHTML = 'Saving function with the ID: ' + data.id;
-  responsed.innerHTML = JSON.stringify(data, null, 2);
+  if (data.data.name.length < 2) {
+    notifications.innerHTML = 'The name was not long enough...';
+    return;
+  };
+  if (data.data.code.length < 2) {
+    notifications.innerHTML = 'The code was not long enough...';
+    return;
+  }
+  if (data.data.code.length && data.data.name.length) {
+    notifications.innerHTML = 'Saving function with the ID: ' + data.id;
+    responsed.innerHTML = JSON.stringify(data, null, 2);
+  }
   /**
     * Sending the function via post.
     */
+
   promisedFetch('https://us-central1-dev-box-175801.cloudfunctions.net/savefunc', "POST", data)
   .then((json) => {
     let usable = JSON.parse(json);
-    // console.log(usable);
     if (usable["code"] === 400) {
       notifications.innerHTML = 'You did not successfully save.<br />Hamsters may be warming up, try again...';
       responsed.innerHTML = JSON.stringify(usable, null, 2);
