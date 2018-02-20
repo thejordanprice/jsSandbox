@@ -114,7 +114,7 @@ const promisedFetch = (url, method, data) => {
 /**
  * Our main on run function.
  */
-const evaluate = () => {
+let evaluate = () => {
   // start a timer
   let start = new Date().valueOf();
   // if both values are full continue
@@ -127,10 +127,10 @@ const evaluate = () => {
       name: title.value.trim(),
       work: sandbox.value.trim(),
     };
-    const evaluation = (work) => {
+    let evaluation = (work) => {
         // attempt the work
         let expression = work.work;
-        const result = () => {
+        let result = () => {
             return eval.call(null, expression);
           }
           // stop the timer
