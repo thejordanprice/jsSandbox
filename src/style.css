@@ -61,6 +61,6 @@ body {
   color: #12A6BF;
 }
 
-a .navbar-brand, .fa-edit, .fa-home, .fa-github, .fa-user {
+a .navbar-brand, .fa-edit, .fa-home, .fa-github, .fa-user, .fa-folder-open, .fa-blogger-b {
   color: #12A6BF !important;
 }
