@@ -40,6 +40,7 @@
 <!-- main content. -->
 <div class='container' id='app'>
   <div class='text-center'>
+    <p id='notifications'></p>
     <small><i>Functions at their finest.</i></small>
   </div>
   <div class='form-group'>
@@ -57,7 +58,7 @@ const x = (a, b) => {
 x(4,8);'></textarea>
   </div>
     <label for='response'>Response</label>
-    <pre class='form-control' id='response'>null</pre>
+    <pre class='form-control' id='responsed'>null</pre>
   <br />
   <div class='text-center'>
 
@@ -79,12 +80,13 @@ x(4,8);'></textarea>
  * The JAVASCRIPT SECTION :D
  * The DOM hooks
  */
-const response = document.getElementById('response');
+const responsed = document.getElementById('responsed');
 const sandbox = document.getElementById('sandbox');
 const title = document.getElementById('title');
 const button = document.getElementById('submit');
 const destroy = document.getElementById('destroy');
 const random = document.getElementById('random');
+const notifications = document.getElementById('notifications');
 const exampleOne = document.getElementById('exampleOne');
 const exampleTwo = document.getElementById('exampleTwo');
 const exampleThree = document.getElementById('exampleThree');
@@ -148,7 +150,7 @@ const evaluate = () => {
               status: true,
             }
             // work seemed to have went well.
-          response.innerHTML = JSON.stringify((completed), null, 2);
+          responsed.innerHTML = JSON.stringify((completed), null, 2);
         }
       }
       // running function above.
@@ -172,7 +174,7 @@ const evaluate = () => {
       },
       status: false,
     };
-    response.innerHTML = JSON.stringify(error, null, 2);
+    responsed.innerHTML = JSON.stringify(error, null, 2);
   }
   return false;
 };
@@ -189,7 +191,7 @@ const randomTitle = () => {
  */
 const saveFunction = () => {
   // organize our data we want to send.
-  let errors = [];
+  let errors = false;
   let data = {
     id: Math.random().toString(32).substr(2, 32),
     data: {
@@ -199,30 +201,36 @@ const saveFunction = () => {
     },
   };
   // error checking
-  if (data.work === '') {
-    errors.push('There was no work provided.');
+  if (data.data.work === '') {
+    errors = true;
   };
-  if (data.name === '') {
-    errors.push('There was no name provided.');
+  if (data.data.name.value === '') {
+    errors = true;
   };
-  // send the data off to the cloud.
-  // console.log(data);
-  response.innerHTML = JSON.stringify(data, null, 2);
-  /**
-   * Sending the function via post.
-   */
-  promisedFetch('https://us-central1-dev-box-175801.cloudfunctions.net/savefunc', "POST", data)
-  .then(console.log)
-  .then(() => {
-    let element = document.createElement('div');
-    element.id = 'alert';
-    element.class = 'alert alert-success';
-    element.role = 'alert';
-    element.innerHTML = 'You successfully saved as ID: ' + data.id;
-    document.getElementById('app').prepend(element);
-  })
-  // its sometimes not saving :P
-  .catch(console.log)
+
+  if (!errors) {
+    // send the data off to the cloud.
+    // console.log(data);
+    responsed.innerHTML = JSON.stringify({'sending':data}, null, 2);
+    /**
+      * Sending the function via post.
+      */
+    promisedFetch('https://us-central1-dev-box-175801.cloudfunctions.net/savefunc', "POST", data)
+    .then((json) => {
+      let usable = JSON.parse(json);
+      // console.log(usable);
+      if (usable["code"] === 400) {
+        notifications.innerHTML = 'You did not successfully save.<br />Hamsters may be warming up, try again...';
+        responsed.innerHTML = JSON.stringify(usable, null, 2);
+      };
+      if (usable["code"] === 200) {
+        notifications.innerHTML = 'You successfully saved as ID: ' + data.id;
+        responsed.innerHTML = JSON.stringify(usable, null, 2);
+      };
+    });
+  } else {
+    notifications.innerHTML = 'There was missing input.';
+  }
   return false;
 };
 
@@ -251,13 +259,8 @@ const loadFunction = () => {
       // console.log(viewable);
       title.value = json.data.name;
       sandbox.innerHTML = json.data.work;
-      document.getElementById('response').innerHTML = 'Load Successful.';
-      let element = document.createElement('div');
-      element.id = 'alert';
-      element.class = 'alert alert-success';
-      element.role = 'alert';
-      element.innerHTML = 'You successfully loaded as ID: ' + json.id;
-      document.getElementById('app').prepend(element);
+      responsed.innerHTML = 'Load Successful.';
+      notifications.innerHTML = 'You successfully loaded as ID: ' + json.id;
     })
   }).catch(console.log);
   return false;
@@ -355,7 +358,7 @@ random.addEventListener('click', () => {
 
 // to clear out said data easily
 destroy.addEventListener('click', () => {
-  response.innerHTML = 'destroyed';
+  responsed.innerHTML = 'destroyed';
   sandbox.value = '';
   title.value = '';
   return false;
