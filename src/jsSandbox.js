@@ -4,7 +4,7 @@
  * The DOM hooks
  */
 const responsed = document.getElementById('responsed');
-const sandbox = document.getElementById('sandbox');
+const sandbox = document.getElementById('editor');
 const title = document.getElementById('title');
 const button = document.getElementById('submit');
 const destroy = document.getElementById('destroy');
@@ -124,7 +124,7 @@ const saveFunction = () => {
     data: {
       date: new Date().valueOf(),
       name: title.value.trim(),
-      code: sandbox.value,
+      code: sandbox.innerHTML.toString(),
     },
   };
   // error checking
@@ -284,7 +284,7 @@ trash.addEventListener('click', () => {
 
 // to clear out said data easily
 destroy.addEventListener('click', () => {
-  responsed.innerHTML = 'destroyed';
+  responsed.innerHTML = 'erased';
   sandbox.value = '';
   title.value = '';
   return false;
