@@ -62,5 +62,5 @@ body {
 }
 
 a .navbar-brand, .fa-edit, .fa-home, .fa-github, .fa-user {
-  color: #12A6BF;
+  color: #12A6BF !important;
 }
