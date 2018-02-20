@@ -245,25 +245,14 @@ const loadFunction = () => {
   } else {
     return;
   };
-  let url = 'https://us-central1-dev-box-175801.cloudfunctions.net/getfunc?id=' + input;
-  let options = {
-    "method":"GET",
-    "headers":{
-      "Content-Type":"application/json"
-    }
-  };
-  let response = fetch(url, options);
-  response.then(result => {
-    result.json().then(json => {
-      let viewable = JSON.stringify(json, null, 2);
-      // console.log(viewable);
-      title.value = json.data.name;
-      sandbox.innerHTML = json.data.work;
-      responsed.innerHTML = 'Load Successful.';
-      notifications.innerHTML = 'You successfully loaded as ID: ' + json.id;
-    })
-  }).catch(console.log);
-  return false;
+  promisedFetch('https://us-central1-dev-box-175801.cloudfunctions.net/getfunc?id=' + input, "GET", true)
+    .then((json) => {
+      let usable = JSON.parse(json);
+      title.value = usable.data.name;
+      sandbox.innerHTML = usable.data.work;
+      responsed.innerHTML = JSON.stringify(usable, null, 2);
+      notifications.innerHTML = 'You successfully loaded ID: ' + usable.id;
+    }).catch(console.log);
 };
 
 /**
