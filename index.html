@@ -54,11 +54,13 @@
     <button class='btn btn-secondary form-control' type='button' id='random'>Random &nbsp;<i class='fas fa-random'></i></button>
   </div>
   <br />
-  <div class='form-group'>
-    <label for='sandbox'>Function Sandbox</label>
-    <small id='exampleOne'>Example #1</small>
-    <small id='exampleTwo'>Example #2</small>
-    <small id='exampleThree'>Example #3</small>
+  <span class='form-group'>
+    <div class='btn-group float-left'>
+      <button class='btn btn-disabled'>Function Sandbox</button>
+      <button class='btn btn-secondary' id='exampleOne'>Example #1</button>
+      <button class='btn btn-secondary' id='exampleTwo'>Example #2</button>
+      <button class='btn btn-secondary' id='exampleThree'>Example #3</button>
+    </div>
     <div class='btn-group float-right'>
       <button class='btn btn-primary' id='submit'>Run &nbsp;<i class='fas fa-rocket'></i></button>
       <button class='btn btn-info' id='trash'>Clear &nbsp;<i class='fas fa-eraser'></i></button>
@@ -66,17 +68,17 @@
       <button class='btn btn-secondary' id='load'>Load &nbsp;<i class='fas fa-cloud-download-alt'></i></button>
       <button class='btn btn-secondary' id='destroy'>Erase &nbsp;<i class='fas fa-trash'></i></button>
     </div>
-    <br /><br />
-    <textarea class='form-control' id='sandbox' rows='8' placeholder='`use strict`;
+  </span>
+  <br /><br />
+  <textarea class='form-control' id='sandbox' rows='8' placeholder='`use strict`;
 
 const x = (a, b) => {
   return a * b;
 };
 
 x(4,8);'></textarea>
-  </div>
-    <label for='response'>Response</label>
-    <pre class='form-control' id='responsed'>null</pre>
+  <label for='response'>Response</label>
+  <pre class='form-control' id='responsed'>null</pre>
 </div>
 <br />
 <br />
