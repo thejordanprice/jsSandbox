@@ -6,6 +6,7 @@ html {
 body {
   margin-bottom: 60px;
   transition: background 2s ease-in-out;
+  background-color: #DEEFF5;
 }
 
 #title {
