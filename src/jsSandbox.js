@@ -104,6 +104,9 @@ let evaluate = () => {
     if (title.value === '') {
       errors.push('There was no title input.');
     };
+    if (title.value.length && sandbox.value.length) {
+      errors.push('An unknown error happened, possibly syntax.');
+    }
     // stop timer and throw dumb error.
     let stop = new Date().valueOf();
     let timer = (stop - start);
