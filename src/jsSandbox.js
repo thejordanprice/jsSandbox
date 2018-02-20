@@ -16,6 +16,20 @@ const exampleThree = document.getElementById('exampleThree');
 const loadbutton = document.getElementById('load');
 const trashbutton = document.getElementById('trash');
 
+/** 
+ * Quotes that change, wooooo.
+ */
+window.onload = () => {
+  const facts = [
+    'Functions are their finest.',
+    'These get sent off to a place that doesn\'nt exist',
+    'Did you know you could actually write code here?...',
+    'This is like a fancy notepad with smart stuff in it.',
+  ];
+  let fact = facts[Math.floor(Math.random() * facts.length)];
+  document.getElementById('fact').innerHTML = fact;
+};
+
 /**
  * A good posting setup.
  */
