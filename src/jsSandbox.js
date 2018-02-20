@@ -19,17 +19,20 @@ const trashbutton = document.getElementById('trash');
 /** 
  * Quotes that change, wooooo.
  */
-const facts = [
-  'Functions are their finest.',
-  'These get sent off to a place that doesn\'nt exist.',
-  'Did you know you could actually write code here?...',
-  'This is like a fancy notepad with smart stuff in it.',
-  'Need a simpler calculator?...',
-  'JavaScript was originally released on ‎December 4, 1995.',
-  'ECMAScript 2017 (the latest stable) was released as of June 2017.',
-];
-let fact = facts[Math.floor(Math.random() * facts.length)];
-document.getElementById('fact').innerHTML = fact;
+window.onload = () => {
+  const facts = [
+    'Functions are their finest.',
+    'These get sent off to a place that doesn\'nt exist.',
+    'Did you know you could actually write code here?...',
+    'This is like a fancy notepad with smart stuff in it.',
+    'Need a simpler calculator?...',
+    'JavaScript was originally released on ‎December 4, 1995.',
+    'ECMAScript 2017 (the latest stable) was released as of June 2017.',
+  ];
+  let fact = facts[Math.floor(Math.random() * facts.length)];
+  document.getElementById('fact').innerHTML = fact;
+  return false;
+};
 
 /**
  * A good posting setup.
@@ -81,10 +84,7 @@ const pages = () => {
     }
 
     if (query[0] === '?page' || query[1].value) {
-      let reqpage = query[1];
-      if (reqpage === 'blank') {
-        app.innerHTML = '';
-      }
+      let reqpage = query[1];s
       if (reqpage === 'test') {
         notifications.innerHTML = 'That page will exist.'
       } else {
@@ -110,7 +110,7 @@ let evaluate = () => {
       id: Math.random().toString(32).substr(2, 32),
       start: new Date().toLocaleString(),
       name: title.value.trim(),
-      work: sandbox.innerHTML.value,
+      work: sandbox.value.trim(),
     };
     let evaluation = (work) => {
         // attempt the work
@@ -140,6 +140,7 @@ let evaluate = () => {
       }
       // running function above.
     evaluation(work);
+    return false;
   } else {
     // errors missing information.
     let errors = [];
@@ -148,6 +149,9 @@ let evaluate = () => {
     };
     if (title.value === '') {
       errors.push('There was no title input.');
+    };
+    if (title.value.length && sandbox.value.length) {
+      errors.push('An unknown error happened, possibly syntax.');
     };
     // stop timer and throw dumb error.
     let stop = new Date().valueOf();
