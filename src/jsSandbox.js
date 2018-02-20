@@ -188,7 +188,7 @@ const loadFunction = () => {
   };
   notifications.innerHTML = 'Loading from DB...';
   promisedFetch('https://us-central1-dev-box-175801.cloudfunctions.net/getfunc?id=' + input, "GET", true)
-    .then((json) => {
+    .then(json => {
       let usable = JSON.parse(json);
       if (usable.id !== undefined) {
         title.value = usable.data.name;
