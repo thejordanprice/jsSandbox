@@ -8,10 +8,6 @@ body {
   transition: background 2s ease-in-out;
 }
 
-#response {
-  transition: background 2s ease-in-out;
-}
-
 #title {
   font-weight: bold;
 }
@@ -54,9 +50,13 @@ body {
   font-size: 20px;
 }
 
-.site-footer .love .fa {
+.site-footer .love .fas {
   font-size: 12px;
   margin-left: 2px;
   margin-right: 2px;
-  color: #ff8181;
+  color: #12A6BF;
+}
+
+.fa-heart {
+  color: #12A6BF;
 }
