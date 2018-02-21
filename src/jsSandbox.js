@@ -60,29 +60,32 @@ const pages = () => {
   let page = document.location.search;
   if (page) {
     let query = (page.split('='));
-    // if the page has ?id=someid
+    // if the page has ?id=someid.
     // console.log(query);
     if (query[0] === '?id' || query[1].value) {
       let id = query[1];
       if (id != '') {
+        // if the query was not empty.
         notifications.innerHTML = 'Loading from DB...';
         promisedFetch('https://us-central1-dev-box-175801.cloudfunctions.net/getfunc?id=' + id, "GET", true)
           .then(json => {
+            // make our response parsable.
             let usable = JSON.parse(json);
+            // if it returned and id continue.
             if (usable.id !== undefined) {
               title.value = usable.data.name;
-              sandbox.value = usable.data.code;
+              sandbox.innerHTML = usable.data.code;
               responsed.innerHTML = JSON.stringify(usable, null, 2);
               notifications.innerHTML = 'You successfully loaded ID: ' + usable.id;
+            // if there was no id then it nots there yet.
             } else {
               notifications.innerHTML = 'That ID is not valid yet.';
               responsed.innerHTML = JSON.stringify(usable, null, 2);
             }
           }
-        );
+        )
       }
     }
-
     if (query[0] === '?page' || query[1].value) {
       let reqpage = query[1];s
       if (reqpage === 'test') {
@@ -129,7 +132,7 @@ let evaluate = () => {
                 name: work.name,
                 time: new Date().valueOf(),
                 exec: timer + 'ms',
-                work: work.work,
+                work: work.work.toString(),
                 eval: result(),
               },
               status: true,
@@ -202,7 +205,7 @@ const saveFunction = () => {
     return;
   };
   // we'll save it i guess
-  if (data.data.code.length && data.data.name.length) {
+  if (data.id) {
     notifications.innerHTML = 'Saving function with the ID: ' + data.id;
     responsed.innerHTML = JSON.stringify(data, null, 2);
   };
