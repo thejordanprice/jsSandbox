@@ -13,17 +13,18 @@ body {
   font-weight: bold;
 }
 
-.container {
-  padding-top: 15px;
-}
-
 #editor {
   font-weight: bold;
   font-size: 20px;
+  border: 1px solid black;
+  min-height: 200px;
+  height: 300px;
+  max-height: 500px;
+  overflow: auto;
 }
 
-#alert {
-  text-align: center;
+.container {
+  padding-top: 15px;
 }
 
 #app {
