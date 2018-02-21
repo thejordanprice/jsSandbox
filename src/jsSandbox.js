@@ -83,7 +83,7 @@ const pages = () => {
             notifications.innerHTML = 'That ID is not valid yet.';
             responsed.innerHTML = JSON.stringify(usable, null, 2);
           }
-        });
+        })
       }
     }
     // moar pages?!?!
@@ -223,12 +223,15 @@ const saveFunction = () => {
       responsed.innerHTML = JSON.stringify(usable, null, 2);
     };
     if (usable["code"] === 200) {
-      if (window.location.search) {
-        let href = window.location.href.split('?') + 'id=';
+      let href = window.location.href;
+      let checkForQuery = href.includes("?");
+      if (!checkForQuery) {
+        // good page
+      } else {
         notifications.innerHTML = 'You successfully saved as ID: ' + data.id + '\
-        <br /><a href="?id=' + data.id + '">' + data.id + '</a>';
+        <br /><a href="?id=' + data.id + '">' + window.location.href.split('?')[0] + '?id=' + data.id + '</a>';
         responsed.innerHTML = JSON.stringify(usable, null, 2);
-      };
+      }
     };
   });
   return false;
