@@ -130,7 +130,7 @@ const evaluate = () => {
             id: work.id,
             data: {
               name: work.name,
-              time: new Date().valueOf(),
+              time: new Date().toLocaleString(),
               exec: timer + 'ms',
               work: work.work,
               eval: result(),
@@ -213,7 +213,7 @@ const saveFunction = () => {
   let data = {
     id: Math.random().toString(32).substr(2, 32),
     data: {
-      date: new Date().valueOf(),
+      date: new Date().toLocaleString(),
       name: title.value.trim(),
       code: sandbox.value.toString(),
     },
