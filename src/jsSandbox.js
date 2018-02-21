@@ -150,10 +150,10 @@ let evaluate = () => {
   } else {
     // errors missing information.
     let errors = [];
-    if (sandbox.value === '') {
+    if (sandbox.value.length < 3) {
       errors.push('There was no function input.');
     };
-    if (title.value === '') {
+    if (title.value.length < 3) {
       errors.push('There was no title input.');
     };
     if (title.value.length && sandbox.value.length) {
@@ -199,11 +199,11 @@ const saveFunction = () => {
     },
   };
   // error checking
-  if (data.data.name.length < 2) {
+  if (data.data.name.length < 3) {
     notifications.innerHTML = 'The name was not long enough...';
     return;
   };
-  if (data.data.code.length < 2) {
+  if (data.data.code.length < 3) {
     notifications.innerHTML = 'The code was not long enough...';
     return;
   };
