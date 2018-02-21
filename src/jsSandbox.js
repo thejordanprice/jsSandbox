@@ -139,8 +139,9 @@ let evaluate = () => {
               },
               status: true,
             }
-            // work seemed to have went well.
+          // work seemed to have went well.
           responsed.innerHTML = JSON.stringify((completed), null, 2);
+          notifications.innerHTML = 'You successfully ran a function! &nbsp;<i class="fas fa-rocket"></i>';
         }
       }
       // running function above.
