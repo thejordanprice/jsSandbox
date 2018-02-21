@@ -77,10 +77,10 @@ const pages = () => {
             title.value = usable.data.name;
             sandbox.innerHTML = usable.data.code;
             responsed.innerHTML = JSON.stringify(usable, null, 2);
-            notifications.innerHTML = 'You successfully loaded ID: ' + usable.id;
+            notifications.innerHTML = '<i class="fas fa-sync"></i> &nbsp;You successfully loaded ID: ' + usable.id;
           // if there was no id then it nots there yet.
           } else {
-            notifications.innerHTML = 'That ID is not valid yet.';
+            notifications.innerHTML = '<i class="far fa-question-circle"></i> &nbsp;That ID is not valid yet.';
             responsed.innerHTML = JSON.stringify(usable, null, 2);
           }
         })
@@ -219,21 +219,14 @@ const saveFunction = () => {
   .then((json) => {
     let usable = JSON.parse(json);
     if (usable["code"] === 400) {
-      notifications.innerHTML = 'You did not successfully save.<br />Hamsters may be warming up, try again...';
+      notifications.innerHTML = '<i class="fas fa-sync"></i> &nbsp;You did not successfully save.<br />Hamsters may be warming up, try again...';
       responsed.innerHTML = JSON.stringify(usable, null, 2);
     };
     if (usable["code"] === 200) {
       let href = window.location.href;
-      let checkForQuery = href.includes("?");
-      if (!checkForQuery) {
-        notifications.innerHTML = 'You successfully saved as ID: ' + data.id + '\
-        <br /><a href="?id=' + data.id + '">' + window.location.href.split('?')[0] + '?id=' + data.id + '</a>';
-        responsed.innerHTML = JSON.stringify(usable, null, 2);
-      } else {
-        notifications.innerHTML = 'You successfully saved as ID: ' + data.id + '\
-        <br /><a href="?id=' + data.id + '">' + window.location.href.split('?')[0] + '?id=' + data.id + '</a>';
-        responsed.innerHTML = JSON.stringify(usable, null, 2);
-      }
+      notifications.innerHTML = '<i class="fas fa-save"></i> &nbsp;Funtion ID: ' + data.id + '\
+      <br /><a href="?id=' + data.id + '">' + window.location.href.split('?')[0] + '?id=' + data.id + '</a>';
+      responsed.innerHTML = JSON.stringify(usable, null, 2);
     };
   });
   return false;
@@ -256,9 +249,9 @@ const loadFunction = () => {
         title.value = usable.data.name;
         sandbox.innerHTML = usable.data.code;
         responsed.innerHTML = JSON.stringify(usable, null, 2);
-        notifications.innerHTML = 'You successfully loaded ID: ' + usable.id;
+        notifications.innerHTML = '<i class="fas fa-sync"></i> &nbsp;You successfully loaded ID: ' + usable.id;
       } else {
-        notifications.innerHTML = 'That ID is not valid yet.';
+        notifications.innerHTML = '<i class="far fa-question-circle"></i> &nbsp;That ID is not valid yet.';
         responsed.innerHTML = JSON.stringify(usable, null, 2);
       }
     });
