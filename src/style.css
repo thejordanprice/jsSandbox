@@ -71,3 +71,9 @@ body {
 a .navbar-brand, .fa-edit, .fa-home, .fa-github, .fa-user, .fa-folder-open, .fa-blogger-b {
   color: #12A6BF !important;
 }
+
+.animated {
+  -webkit-transition: height 1s;
+  -moz-transition: height 1s;
+  transition: height 1s;
+}
