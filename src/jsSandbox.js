@@ -77,7 +77,7 @@ const pages = () => {
             title.value = usable.data.name;
             sandbox.innerHTML = usable.data.code;
             responsed.innerHTML = JSON.stringify(usable, null, 2);
-            notifications.innerHTML = '<i class="fas fa-sync"></i> &nbsp;You successfully loaded ID: ' + usable.id;
+            notifications.innerHTML = '<i class="fas fa-download"></i> &nbsp;You successfully loaded ID: ' + usable.id;
           // if there was no id then it nots there yet.
           } else {
             notifications.innerHTML = '<i class="far fa-question-circle"></i> &nbsp;That ID is not valid yet.';
@@ -271,7 +271,7 @@ const loadFunction = () => {
         title.value = usable.data.name;
         sandbox.innerHTML = usable.data.code;
         responsed.innerHTML = JSON.stringify(usable, null, 2);
-        notifications.innerHTML = '<i class="fas fa-sync"></i> &nbsp;You successfully loaded ID: ' + usable.id;
+        notifications.innerHTML = '<i class="fas fa-download"></i> &nbsp;You successfully loaded ID: ' + usable.id;
       } else {
         notifications.innerHTML = '<i class="fas fa-ban"></i> &nbsp;That ID is not valid yet.';
         responsed.innerHTML = JSON.stringify(usable, null, 2);
