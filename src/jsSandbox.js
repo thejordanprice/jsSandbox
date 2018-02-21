@@ -199,11 +199,11 @@ const saveFunction = () => {
   };
   // error checking
   if (data.data.name.length < 3) {
-    notifications.innerHTML = 'The name was not long enough...';
+    notifications.innerHTML = '<i class="fas fa-ban"></i> &nbsp;The name was not long enough...';
     return;
   };
   if (data.data.code.length < 3) {
-    notifications.innerHTML = 'The code was not long enough...';
+    notifications.innerHTML = '<i class="fas fa-ban"></i> &nbsp;The code was not long enough...';
     return;
   };
   // we'll save it i guess
