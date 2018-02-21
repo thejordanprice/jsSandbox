@@ -229,7 +229,7 @@ const saveFunction = () => {
   };
   // we'll save it i guess
   if (data.id) {
-    notifications.innerHTML = 'Saving function with the ID: ' + data.id;
+    notifications.innerHTML = '<i class="fas fa-sync"></i> &nbsp;Saving function with the ID: ' + data.id;
     responsed.innerHTML = JSON.stringify(data, null, 2);
   };
 
