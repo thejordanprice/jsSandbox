@@ -25,9 +25,8 @@ window.onload = () => {
     'These get sent off to a place that doesn\'nt exist.',
     'Did you know you could actually write code here?...',
     'This is like a fancy notepad with smart stuff in it.',
-    'Need a simpler calculator?...',
     'JavaScript was originally released on ‎December 4, 1995.',
-    'ECMAScript 2017 (the latest stable) was released as of June 2017.',
+    'ECMAScript 2017 (the latest stable) was released as of June 2017',
   ];
   let fact = facts[Math.floor(Math.random() * facts.length)];
   document.getElementById('fact').innerHTML = fact;
@@ -86,8 +85,9 @@ const pages = () => {
         )
       }
     }
+    // moar pages?!?!
     if (query[0] === '?page' || query[1].value) {
-      let reqpage = query[1];s
+      let reqpage = query[1];
       if (reqpage === 'test') {
         notifications.innerHTML = 'That page will exist.'
       } else {
@@ -132,7 +132,7 @@ let evaluate = () => {
                 name: work.name,
                 time: new Date().valueOf(),
                 exec: timer + 'ms',
-                work: work.work.toString(),
+                work: work.work,
                 eval: result(),
               },
               status: true,
