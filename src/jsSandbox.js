@@ -140,7 +140,7 @@ let evaluate = () => {
             }
           // work seemed to have went well.
           responsed.innerHTML = JSON.stringify((completed), null, 2);
-          notifications.innerHTML = 'You successfully ran a function! &nbsp;<i class="fas fa-rocket"></i>';
+          notifications.innerHTML = '<i class="fas fa-rocket"></i>&nbsp; You successfully ran a function!';
         }
       }
       // running function above.
