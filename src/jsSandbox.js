@@ -15,6 +15,7 @@ const exampleTwo = document.getElementById('exampleTwo');
 const exampleThree = document.getElementById('exampleThree');
 const loadbutton = document.getElementById('load');
 const trashbutton = document.getElementById('trash');
+const printbutton = document.getElementById('print');
 
 /** 
  * Quotes that change, wooooo.
@@ -27,6 +28,7 @@ window.onload = () => {
     'This is like a fancy notepad with smart stuff in it.',
     'JavaScript was originally released on ‎December 4, 1995.',
     'ECMAScript 2017 (the latest stable) was released as of June 2017',
+    'These DB entries may be deleted at any time, I\'m still developing it',
   ];
   let fact = facts[Math.floor(Math.random() * facts.length)];
   document.getElementById('fact').innerHTML = fact;
@@ -353,5 +355,11 @@ submit.addEventListener('click', () => {
 // save to google cloud db
 save.addEventListener('click', () => {
   saveFunction();
+  return false;
+});
+
+// print function
+printbutton.addEventListener('click', () => {
+  window.print();
   return false;
 });
