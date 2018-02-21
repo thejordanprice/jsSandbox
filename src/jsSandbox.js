@@ -341,6 +341,7 @@ random.addEventListener('click', () => {
 
 // to clear out said data easily
 destroy.addEventListener('click', () => {
+  notifications.innerHTML = '';
   responsed.innerHTML = 'erased';
   sandbox.value = '';
   title.value = '';
