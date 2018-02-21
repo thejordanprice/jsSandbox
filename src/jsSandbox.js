@@ -226,7 +226,7 @@ const saveFunction = () => {
       let href = window.location.href;
       let checkForQuery = href.includes("?");
       if (!checkForQuery) {
-        // good page
+        // bad page
       } else {
         notifications.innerHTML = 'You successfully saved as ID: ' + data.id + '\
         <br /><a href="?id=' + data.id + '">' + window.location.href.split('?')[0] + '?id=' + data.id + '</a>';
