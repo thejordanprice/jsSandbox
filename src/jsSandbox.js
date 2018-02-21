@@ -69,22 +69,21 @@ const pages = () => {
         // if the query was not empty.
         notifications.innerHTML = 'Loading from DB...';
         promisedFetch('https://us-central1-dev-box-175801.cloudfunctions.net/getfunc?id=' + id, "GET", true)
-          .then(json => {
-            // make our response parsable.
-            let usable = JSON.parse(json);
-            // if it returned and id continue.
-            if (usable.id !== undefined) {
-              title.value = usable.data.name;
-              sandbox.innerHTML = usable.data.code;
-              responsed.innerHTML = JSON.stringify(usable, null, 2);
-              notifications.innerHTML = 'You successfully loaded ID: ' + usable.id;
-            // if there was no id then it nots there yet.
-            } else {
-              notifications.innerHTML = 'That ID is not valid yet.';
-              responsed.innerHTML = JSON.stringify(usable, null, 2);
-            }
+        .then(json => {
+          // make our response parsable.
+          let usable = JSON.parse(json);
+          // if it returned and id continue.
+          if (usable.id !== undefined) {
+            title.value = usable.data.name;
+            sandbox.innerHTML = usable.data.code;
+            responsed.innerHTML = JSON.stringify(usable, null, 2);
+            notifications.innerHTML = 'You successfully loaded ID: ' + usable.id;
+          // if there was no id then it nots there yet.
+          } else {
+            notifications.innerHTML = 'That ID is not valid yet.';
+            responsed.innerHTML = JSON.stringify(usable, null, 2);
           }
-        )
+        });
       }
     }
     // moar pages?!?!
@@ -224,11 +223,12 @@ const saveFunction = () => {
       responsed.innerHTML = JSON.stringify(usable, null, 2);
     };
     if (usable["code"] === 200) {
-      console.log(data);
-      let href = window.location.href.split('?') + 'id=';
-      notifications.innerHTML = 'You successfully saved as ID: ' + data.id + '\
-      <br /><a href="?id=' + data.id + '">' + href + data.id + '</a>';
-      responsed.innerHTML = JSON.stringify(usable, null, 2);
+      if (window.location.search) {
+        let href = window.location.href.split('?') + 'id=';
+        notifications.innerHTML = 'You successfully saved as ID: ' + data.id + '\
+        <br /><a href="?id=' + data.id + '">' + data.id + '</a>';
+        responsed.innerHTML = JSON.stringify(usable, null, 2);
+      };
     };
   });
   return false;
