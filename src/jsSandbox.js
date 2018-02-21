@@ -254,7 +254,7 @@ const loadFunction = () => {
       let usable = JSON.parse(json);
       if (usable.id !== undefined) {
         title.value = usable.data.name;
-        sandbox.value = usable.data.code;
+        sandbox.innerHTML = usable.data.code;
         responsed.innerHTML = JSON.stringify(usable, null, 2);
         notifications.innerHTML = 'You successfully loaded ID: ' + usable.id;
       } else {
