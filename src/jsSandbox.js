@@ -168,12 +168,15 @@ const evaluate = () => {
     let errors = [];
     if (sandbox.value.length < 3) {
       errors.push('There was no function input.');
+      notifications.innerHTML = '<i class="fas fa-lightbulb"></i> &nbsp;There was no function input.';
     };
     if (title.value.length < 3) {
       errors.push('There was no title input.');
+      notifications.innerHTML = '<i class="fas fa-lightbulb"></i> &nbsp;There was no title input.';
     };
     if (title.value.length && sandbox.value.length) {
       errors.push('An unknown error happened, possibly syntax.');
+      notifications.innerHTML = '<i class="fas fa-lightbulb"></i> &nbsp;An unknown error happened, possibly syntax.';
     };
     // stop timer and throw dumb error.
     let stop = new Date().valueOf();
