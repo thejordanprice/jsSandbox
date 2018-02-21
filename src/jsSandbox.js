@@ -224,14 +224,15 @@ const saveFunction = () => {
       responsed.innerHTML = JSON.stringify(usable, null, 2);
     };
     if (usable["code"] === 200) {
-      notifications.innerHTML = 'You successfully saved as ID: ' + data.id + '</a>\
-      <br /><a href="?id=' + data.id + '">https://thejordanprice.github.io/jsSandbox/?id=' + data.id + '</a>';
+      console.log(data);
+      let href = window.location.href.split('?') + 'id=';
+      notifications.innerHTML = 'You successfully saved as ID: ' + data.id + '\
+      <br /><a href="?id=' + data.id + '">' + href + data.id + '</a>';
       responsed.innerHTML = JSON.stringify(usable, null, 2);
     };
   });
   return false;
 };
-
 /**
  * Loading from cloud function.
  */ 
