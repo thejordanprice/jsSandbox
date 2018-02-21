@@ -99,7 +99,6 @@ const pages = () => {
 }
 
 pages();
-
 /**
  * Our main on run function.
  */
@@ -139,8 +138,26 @@ const evaluate = () => {
             status: true,
           }
           // work seemed to have went well.
-          responsed.innerHTML = JSON.stringify((completed), null, 2);
-          notifications.innerHTML = '<i class="fas fa-rocket"></i>&nbsp; You successfully ran a function!';
+          responsed.innerHTML = JSON.stringify(completed, null, 2);
+        } else {
+          // stop timer and throw dumb error.
+          let stop = new Date().valueOf();
+          let timer = (stop - start);
+          let error = {
+            error: 9001,
+            data: {
+              execution: timer + 'ms',
+              message: errors,
+              time: new Date().valueOf(),
+            },
+            status: false,
+          };
+          if (error['error'].value === '9001') {
+            // put error inside the DOM.
+            responsed.innerHTML = JSON.stringify(error, null, 2);
+          }
+          // clear errors
+          errors = [];
         }
       }
       // running function above.
@@ -170,6 +187,7 @@ const evaluate = () => {
       },
       status: false,
     };
+    // clear errors
     errors = [];
     // put error inside the DOM.
     responsed.innerHTML = JSON.stringify(error, null, 2);
@@ -360,8 +378,9 @@ save.addEventListener('click', () => {
   return false;
 });
 
+/**
 // print function
 printbutton.addEventListener('click', () => {
   window.print();
   return false;
-});
+});**/
