@@ -91,14 +91,8 @@ const pages = () => {
       let reqpage = query[1];
       if (reqpage === 'test') {
         notifications.innerHTML = 'That page will exist.'
-        setInterval(() => {
-          notifications.innerHTML = '';
-        }, 5000);
       } else {
         notifications.innerHTML = 'That page does not exist.'
-        setInterval(() => {
-          notifications.innerHTML = '';
-        }, 5000);
       }
     } 
   }
@@ -175,23 +169,14 @@ const evaluate = () => {
     if (sandbox.value.length < 3) {
       errors.push('There was no function input.');
       notifications.innerHTML = '<i class="fas fa-lightbulb"></i> &nbsp;There was no function input.';
-      setInterval(() => {
-        notifications.innerHTML = '';
-      }, 5000);
     };
     if (title.value.length < 3) {
       errors.push('There was no title input.');
       notifications.innerHTML = '<i class="fas fa-lightbulb"></i> &nbsp;There was no title input.';
-      setInterval(() => {
-        notifications.innerHTML = '';
-      }, 5000);
     };
     if (title.value.length && sandbox.value.length) {
       errors.push('An unknown error happened, possibly syntax.');
       notifications.innerHTML = '<i class="fas fa-lightbulb"></i> &nbsp;An unknown error happened, possibly syntax.';
-      setInterval(() => {
-        notifications.innerHTML = '';
-      }, 5000);
     };
     // stop timer and throw dumb error.
     let stop = new Date().valueOf();
@@ -236,16 +221,10 @@ const saveFunction = () => {
   // error checking
   if (data.data.name.length < 3) {
     notifications.innerHTML = '<i class="fas fa-ban"></i> &nbsp;The name was not long enough...';
-    setInterval(() => {
-      notifications.innerHTML = '';
-    }, 5000);
     return;
   };
   if (data.data.code.length < 3) {
     notifications.innerHTML = '<i class="fas fa-ban"></i> &nbsp;The code was not long enough...';
-    setInterval(() => {
-      notifications.innerHTML = '';
-    }, 5000);
     return;
   };
   // we'll save it i guess
@@ -282,9 +261,6 @@ const loadFunction = () => {
     input = input.toString().trim();
   } else {
     notifications.innerHTML = '<i class="fas fa-ban"></i> &nbsp;Input of the load of function was cancelled.';
-    setInterval(() => {
-      notifications.innerHTML = '';
-    }, 5000);
     return;
   };
   notifications.innerHTML = '<i class="fas fa-sync"></i> &nbsp;Loading from DB...';
@@ -296,15 +272,9 @@ const loadFunction = () => {
         sandbox.innerHTML = usable.data.code;
         responsed.innerHTML = JSON.stringify(usable, null, 2);
         notifications.innerHTML = '<i class="fas fa-sync"></i> &nbsp;You successfully loaded ID: ' + usable.id;
-        setInterval(() => {
-          notifications.innerHTML = '';
-        }, 15000);
       } else {
         notifications.innerHTML = '<i class="fas fa-ban"></i> &nbsp;That ID is not valid yet.';
         responsed.innerHTML = JSON.stringify(usable, null, 2);
-        setInterval(() => {
-          notifications.innerHTML = '';
-        }, 5000);
       }
     });
   // :D
@@ -396,9 +366,6 @@ destroy.addEventListener('click', () => {
   responsed.innerHTML = 'null';
   sandbox.value = '';
   title.value = '';
-  setInterval(() => {
-    notifications.innerHTML = '';
-  }, 5000);
   return false;
 });
 
