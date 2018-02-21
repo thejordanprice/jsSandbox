@@ -103,7 +103,7 @@ pages();
 /**
  * Our main on run function.
  */
-let evaluate = () => {
+const evaluate = () => {
   // start a timer
   let start = new Date().valueOf();
   // if both values are full continue
@@ -116,28 +116,28 @@ let evaluate = () => {
       name: title.value.trim(),
       work: sandbox.value.trim(),
     };
-    let evaluation = (work) => {
-        // attempt the work
-        let expression = work.work;
-        let result = () => {
-            return eval.call(null, expression);
+    const evaluation = (work) => {
+      // attempt the work
+      let expression = work.work;
+      let result = () => {
+        return eval.call(null, expression);
+      }
+      // stop the timer
+      let stop = new Date().valueOf();
+      let timer = (stop - start);
+      // the work was completed
+      if (result) {
+        let completed = {
+            id: work.id,
+            data: {
+              name: work.name,
+              time: new Date().valueOf(),
+              exec: timer + 'ms',
+              work: work.work,
+              eval: result(),
+            },
+            status: true,
           }
-          // stop the timer
-        let stop = new Date().valueOf();
-        let timer = (stop - start);
-        // the work was completed
-        if (result) {
-          let completed = {
-              id: work.id,
-              data: {
-                name: work.name,
-                time: new Date().valueOf(),
-                exec: timer + 'ms',
-                work: work.work,
-                eval: result(),
-              },
-              status: true,
-            }
           // work seemed to have went well.
           responsed.innerHTML = JSON.stringify((completed), null, 2);
           notifications.innerHTML = '<i class="fas fa-rocket"></i>&nbsp; You successfully ran a function!';
