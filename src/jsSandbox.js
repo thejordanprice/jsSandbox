@@ -224,9 +224,8 @@ const saveFunction = () => {
       responsed.innerHTML = JSON.stringify(usable, null, 2);
     };
     if (usable["code"] === 200) {
-      let newurl = document.location.href;
       notifications.innerHTML = 'You successfully saved as ID: ' + data.id + '</a>\
-      <br /><a href="?id=' + data.id + '">' + document.location.href + '?id=' + data.id + '</a>';
+      <br /><a href="?id=' + data.id + '">https://thejordanprice.github.io/jsSandbox/?id=' + data.id + '</a>';
       responsed.innerHTML = JSON.stringify(usable, null, 2);
     };
   });
