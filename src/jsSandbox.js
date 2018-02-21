@@ -76,6 +76,7 @@ const pages = () => {
           if (usable.id !== undefined) {
             title.value = usable.data.name;
             sandbox.innerHTML = usable.data.code;
+            savebutton.innerHTML = '<i class="fas fa-code-branch"></i> &nbsp;Fork';
             responsed.innerHTML = JSON.stringify(usable, null, 2);
             notifications.innerHTML = '<i class="fas fa-download"></i> &nbsp;You successfully loaded ID: ' + usable.id;
           // if there was no id then it nots there yet.
@@ -245,6 +246,7 @@ const saveFunction = () => {
     };
     if (usable["code"] === 200) {
       let href = window.location.href;
+      savebutton.innerHTML = '<i class="fas fa-code-branch"></i> &nbsp;Fork';
       notifications.innerHTML = '<i class="fas fa-save"></i> &nbsp;Funtion ID: ' + data.id + '\
       <br /><a href="?id=' + data.id + '">' + window.location.href.split('?')[0] + '?id=' + data.id + '</a>';
       responsed.innerHTML = JSON.stringify(usable, null, 2);
