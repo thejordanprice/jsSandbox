@@ -239,9 +239,10 @@ const loadFunction = () => {
   if (input) {
     input = input.toString().trim();
   } else {
+    notifications.innerHTML = '<i class="fas fa-ban"></i> &nbsp;Input of the load of function was cancelled.';
     return;
   };
-  notifications.innerHTML = 'Loading from DB...';
+  notifications.innerHTML = '<i class="fas fa-sync"></i> &nbsp;Loading from DB...';
   promisedFetch('https://us-central1-dev-box-175801.cloudfunctions.net/getfunc?id=' + input, "GET", true)
     .then(json => {
       let usable = JSON.parse(json);
@@ -251,7 +252,7 @@ const loadFunction = () => {
         responsed.innerHTML = JSON.stringify(usable, null, 2);
         notifications.innerHTML = '<i class="fas fa-sync"></i> &nbsp;You successfully loaded ID: ' + usable.id;
       } else {
-        notifications.innerHTML = '<i class="far fa-question-circle"></i> &nbsp;That ID is not valid yet.';
+        notifications.innerHTML = '<i class="fas fa-ban"></i> &nbsp;That ID is not valid yet.';
         responsed.innerHTML = JSON.stringify(usable, null, 2);
       }
     });
@@ -340,8 +341,8 @@ random.addEventListener('click', () => {
 
 // to clear out said data easily
 destroy.addEventListener('click', () => {
-  notifications.innerHTML = '';
-  responsed.innerHTML = 'erased';
+  notifications.innerHTML = '<i class="fas fa-eraser"></i> &nbsp;Cleared.';
+  responsed.innerHTML = 'null';
   sandbox.value = '';
   title.value = '';
   return false;

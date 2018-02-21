@@ -29,7 +29,7 @@ A sandbox webapp for playing with javascript in the browser. the ultimate learni
 - [x] Saving the functions.
 - [x] Loading the functions.
 - [x] Cloud function integration with db.
-- [x] Currently the function fails to run upon loading.
+- [ ] Possibly successfuly run before saving. But I like the idea of a functional pastebin too.
 - [ ] Code syntax highlighting. (Seems to be a bit rough to do)
 - [x] Share URL (copy thing).
 
