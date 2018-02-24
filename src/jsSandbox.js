@@ -109,7 +109,8 @@ const evaluate = () => {
   // if both values are full continue
   if (title.value && sandbox.innerHTML) {
     // start creating a work object
-    let work = {
+    let work = {};
+    work = {
       // just a couple things in the work object
       id: Math.random().toString(32).substr(2, 32),
       start: new Date().toLocaleString(),
