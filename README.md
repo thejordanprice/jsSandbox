@@ -12,7 +12,7 @@ A sandbox webapp for playing with javascript in the browser. the ultimate learni
 
 #### Screenshot (alpha)
 
-![Screenshot](https://i.imgur.com/8rjVdlc.png)
+![Screenshot](https://i.imgur.com/1oWVSTd.png)
 
 ### Why
 
