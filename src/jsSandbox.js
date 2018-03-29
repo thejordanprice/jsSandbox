@@ -17,6 +17,7 @@ const loadbutton = document.getElementById('load');
 const trashbutton = document.getElementById('trash');
 const printbutton = document.getElementById('print');
 const savebutton = document.getElementById('save');
+
 /** 
  * Quotes that change, wooooo.
  */
@@ -128,6 +129,7 @@ const evaluate = () => {
       let timer = (stop - start);
       // the work was completed
       if (result) {
+        notifications.innerHTML = '';
         let completed = {
             id: work.id,
             data: {
